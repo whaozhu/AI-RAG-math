@@ -1,1609 +1,888 @@
+Inspired by the work of Soma and Watari, we define a tree structure on certain subsemimodules of the semigroup  $ \Gamma $  associated with an irreducible plane curve singularity  $ (C,O) $ . Building on results of Oblomkov, Rasmussen, and Shende, we show that for specific classes of singularities, this tree encodes key aspects of the geometry of the punctual Hilbert schemes of  $ (C,O) $ . As an application, we compute the motivic Hilbert zeta function for a family of singular curves.
 
+A point in the Hilbert scheme corresponds to an ideal in the local ring  $ \mathcal{O}_{C,O} $  of the singularity. We study the stratification of these Hilbert schemes induced by constraints on the minimal number of generators of the defining ideals, and we describe geometric properties of these strata, including their dimension and closure relations.
 
-
-Inspired by the work of Soma and Watari, we define a tree structure on certain subsemimodules  of the semigroup $\Gamma$ associated with an irreducible plane curve singularity $(C,O)$. Building on results of Oblomkov, Rasmussen, and Shende, we show that for specific classes of singularities, this tree encodes key aspects of the geometry of the punctual Hilbert schemes of $(C,O)$. As an application, we compute the motivic Hilbert zeta function for a family of singular curves.
-\vskip 0.1cm
-A point in the Hilbert scheme corresponds to an ideal in the local ring $\mathcal{O}_{C,O}$ of the singularity. We study the stratification of these Hilbert schemes induced by constraints on the minimal number of generators of the defining ideals, and we describe geometric properties of these strata, including their dimension and closure relations.\vskip 0.1cm
 More importantly, we study their motivic zeta functions, particularly the motivic Hilbert zeta function, which encodes the classes of all punctual Hilbert schemes in the Grothendieck ring of varieties.
 
 
-\end{abstract}
-
-
-
-
-
 \section{Introduction}
-
-
-
-The main objects of study in this article are the punctual Hilbert schemes of irreducible curve singularities defined over an algebraically closed field $k$ of characteristic~$0$. 
-Given a curve singularity $(C,O)$ and an integer $\ell \in \mathbb{N}$, the $\ell$-th punctual Hilbert scheme of $(C,O)$, denoted $C^{[\ell]}$, is the moduli space parametrizing $0$-dimensional subschemes of $(C,O)$ of length $\ell$. This is a special case of Grothendieck's Hilbert scheme, which more generally parametrizes subschemes of projective space with fixed Hilbert polynomial.\vskip 0.1cm
-From an algebraic viewpoint, let $A = \mathcal{O}_{(C,O)}$ denote the local ring of $C$ at $O$. Then the $k$-points of $C^{[\ell]}$ are in bijection with ideals of colength $\ell$ in $A$:
-\[
-C^{[\ell]} := \left\{ I \subset A \mid I \text{ is an ideal and } \dim_k \frac{A}{I} = \ell \right\}.
-\]\vskip 0.1cm
-Let $\overline{A}$ denote the integral closure of $A$ in its total ring of fractions. Since $C$ is an irreducible curve singularity, $\overline{A}$ is a discrete valuation ring. The associated valuation is denoted by $v \colon \overline{A} \setminus \{0\} \to \mathbb{N}$, and we define the delta invariant of the singularity by
-\[
-\delta := \dim_k \frac{\overline{A}}{A}.
-\]
-
-
-Pfister and Steenbrink \cite{pfister1992reduced} proved that  
-  the punctual Hilbert schemes $C^{[l]}$ can be embedded in a closed linear subvariety of the Grassmannian $Gr(\delta,\overline{A}/I(2\delta)),$ where $I(2\delta)$ is the ideal consisting of elements $h \in \overline{A}$ (or equivalently of $A$) whose valuation $v(h)$ is larger than or equal to $2\delta.$ Moreover, the authors "provided" the defining equations of this embedding. In general, even when the defining equations of punctual Hilbert schemes are known, it remains difficult to understand their geometry or to compute their invariants.\\
-
-
-Progress in understanding the geometry of punctual Hilbert schemes has been relatively slow, due in part to the complexity of their structure even in simple singular cases. Soma and Watari \cite{soma2015punctual, soma2014punctual} studied the geometry of punctual Hilbert schemes for plane curve singularities of types $A_{2d}$, $E_6$, and $E_8$. In the case of unibranched curve singularities, the punctual Hilbert scheme $C^{[\ell]}$ coincides with the compactified Jacobian $\overline{J C}$ for sufficiently large $\ell$ \cite{piontkowski2007topology}. 
-
-
-For curves defined by the equation $y^m - x^n = 0$ with $\gcd(m,n) = 1$, Lusztig and Smelt \cite{lusztig1991fixed} computed the homology of the associated Hilbert schemes. Piontkowski \cite{piontkowski2007topology} later extended these results to curves with a single Puiseux pair. Subsequently, Gorsky, Mazin, and Oblomkov \cite{gorsky2022generic} derived explicit formulas for the Poincaré polynomials of Hilbert schemes associated with singularities having Puiseux exponents $(nd, md, md+1)$.
-
-
-
-
-For curve singularities with a single Puiseux pair, Oblomkov, Rasmussen, and Shende \cite{oblomkov2018hilbert} proved that the punctual Hilbert scheme $C^{[\ell]}$ admits a stratification by affine spaces, a result that plays a foundational role in the motivic study of these moduli spaces.\\
-
-
-
-
-
-Recently, punctual Hilbert schemes have attracted considerable attention from two distinct but interconnected perspectives, both of which provide key motivations for this work. 
-
-
-On one hand, these schemes are the fundamental building blocks for the \emph{motivic Hilbert zeta function}, introduced by Bejleri, Ranganathan and Vakil ~\cite{bejleri2020motivic}. This zeta function is defined as the generating series of the classes of punctual Hilbert schemes in the Grothendieck ring of varieties:
-\[
-Z^{\mathrm{Hilb}}_{X}(q) = \sum_{\ell \geq 0} \big[\mathrm{Hilb}^{[\ell]}(X)\big]q^\ell \in 1+q K_0(\mathrm{Var}_k)[[q]].
-\]
-
-Compared to the classical motivic zeta function of Kapranov~\cite{kapranov2000elliptic}, the motivic Hilbert zeta function provides a finer invariant, capturing detailed information about the singularities of a variety $X$ defined over an algebraically closed field $k$.
-
-
-On the other hand, a series of conjectures by Oblomkov, Rasmussen, and Shende~\cite{oblomkov2012hilbert, oblomkov2018hilbert} posits a deep connection between the geometry of punctual Hilbert schemes of plane curve singularities and the topology of associated algebraic knots, particularly over $\mathbb{C}$. More precisely, they conjecture that the (reduced) Khovanov--Rozansky homology of the link of the singularity can be recovered from the homology of the Hilbert schemes. Maulik~\cite{maulik2016stable} proved the first of these conjectures using an inductive argument based on blow-ups, analyzing the variation of both Hilbert schemes and the HOMFLY polynomial under such transformations. Notably, his approach yields significant geometric insight into the structure of punctual Hilbert schemes.
-
-
-Very recently, Rossinelli~\cite{rossinelli2024motivic} discovered a new connection between \emph{curvilinear} punctual Hilbert schemes and the Igusa motivic zeta function, further highlighting the role of Hilbert schemes as a unifying object in singularity theory and motivic integration.  Diaconescu, Porta, Sala and Vosoughinia \cite{diaconescu2023flops} made a progress in the case of space curve singularities. Fasola, Graffeo, Lewanski and Ricolfi \cite{fasola2025invariants} computed the motivic classes of punctual nested Hilbert schemes on a smooth pointed surface.  Graffeo,  Monavari, Moschetti, and  Ricolfi \cite{graffeo2024motive} proved a closed formula for the generating function of the motives $[\mathrm{Hilb}^d(\mathbb{A}^n)_0] \in K_0(\mathrm{Var}_{\mathbb{C}})$ of punctual Hilbert schemes, summing over $n$, for fixed $d > 0$. 
-
-
-
-
-
-
-The main goal of this paper is to describe certain geometric aspects of the punctual Hilbert schemes associated with curve singularities. We focus on two classes: first, plane curve singularities defined by equations of the form $y^m - x^n = 0$ with $\gcd(m,n) = 1$; and second, (not necessarily plane) curve singularities whose semigroup $\Gamma := v(A\setminus  \{0\})$ is monomial. 
-
-
-The latter class consists of singularities for which, within their equisingularity class—i.e., the set of curve singularities sharing the same semigroup—there exists a unique representative up to analytic isomorphism (see Section \ref{Appendix} for futher details). This class was originally introduced by Pfister and Steenbrink~\cite{pfister1992reduced}, and plays a distinguished role in the classification of unibranch curve singularities due to its rigidity under deformation.\\
-
-
-
-
-To achieve this, we make extensive use of $\Gamma$-subsemimodules. A \emph{$\Gamma$-subsemimodule} is a subset $\Delta \subset \Gamma$ such that $\Gamma + \Delta \subseteq \Delta$. It follows directly from the properties of ideals and the valuation $v$ that, for any ideal $I \subset A$, the value set 
-\[
-v(I\setminus \{0\}) = \{ v(f) \mid f \in I \setminus \{0\}\}
-\]
-is a $\Gamma$-subsemimodule of $\Gamma$. This fundamental observation links the algebraic structure of ideals in $\mathcal{O}_{C,O}$ to the combinatorics of the semigroup $\Gamma$.
-
-
-Inspired by recent work of Soma and Watari  \cite{soma2014punctual} on the geometry of Hilbert schemes, as well as that of Oblomkov, Rasmussen, and Shende \cite{oblomkov2018hilbert} on knot invariants and curve singularities, we associate to a curve singularity with semigroup $\Gamma$ a leveled graph $G_\Gamma$ defined as follows.
-
-
-The vertices at level $\ell$ are the elements of the set
-\[
-\mathscr{D}_\ell := \left\{ \Delta \subset \Gamma \mid \Delta \text{ is a } \Gamma\text{-subsemimodule with } \#(\Gamma \setminus \Delta) = \ell \right\}.
-\]
-We draw a directed edge from $\Delta \in \mathscr{D}_\ell$ to $\Delta' \in \mathscr{D}_{\ell-1}$ if 
-\[
-\Delta' = m(\Delta) := \Delta \cup \{\gamma_\Delta\}, \quad \text{where} \quad \gamma_\Delta := \max(\Gamma \setminus \Delta).
-\]
-
-
-
-
-
-
-
-
-We study  the graph $G_\Gamma$ and prove that it has the structure of a tree (Theorem \ref{Tree}). Furtheromore, each subsemimodule $\Delta \in \mathscr{D}_{\ell}$ defines a constructible subset $C^{[\Delta]}\subseteq C^{[\ell]}.$ One of the main result of the paper, building on the work in \cite{oblomkov2018hilbert} regarding the defining equations of $C^{[\Delta]}$, is that for certain curve singularities  an edge of the graph induces a peicewise trivial fibration:
-
-
-
-
-We study the graph $G_\Gamma$ and prove that it has the structure of a tree (Theorem~\ref{Tree}). Furthermore, each subsemimodule $\Delta \in \mathscr{D}_\ell$ defines a constructible subset $C^{[\Delta]} \subseteq C^{[\ell]}$, consisting of all ideals $I \subset A$ in $C^{[\ell]}$ such that $v(I\setminus \{0\}) = \Delta$.
-
-
-
-
-\begin{theorem}[Main Theorem]\label{thm:fibration}(see also Theorem \ref{piecewise fibration}) 
-Let $C$ be either a plane curve singularity defined by $x^p - y^q = 0$ with $\gcd(p,q) = 1$,\W{we can try to replace $(p,q)$  by  $(\alpha, \beta)$ or other notation ? Because the notation $n,m$ is already used in the proof of this Theorem.}
- or a curve singularity with a monomial semigroup $\Gamma$. Let $\Delta$ be a $\Gamma$-subsemimodule of $\Gamma$, and let $\gamma_\Delta = \max(\Gamma \setminus \Delta)$. Then there exists a canonical morphism
-\[
-\pi_{\Delta} \colon C^{[\Delta]} \longrightarrow C^{[m(\Delta)]},
-\]
-which is isomorphic to a trivial fibration over its image. The fiber of $\pi$ is isomorphic to an affine space $\mathbb{A}^{B(\Delta)}$, where
-\[
-B(\Delta) = \# \left\{ \gamma_i \mid \gamma_i < \gamma_\Delta \right\}
-\]
-i.e. is number of minimal generators below $\gamma_\Delta$,
-and the $\gamma_i$ range over the minimal generators of $\Delta$ as a $\Gamma$-subsemimodule.
-\end{theorem}
-
-
-
-
-
-We explicitly determine the image of this morphism. In the case of plane curve singularities defined by $x^p - y^q = 0$ with $\gcd(p,q)=1$, or more generally for singularities with monomial semigroups, 
-this allows us to recover a key result from \cite{oblomkov2018hilbert}: $C^{[\Delta]}$ is an affine space, and its dimension is completely determined by the combinatorial invariants of the $\Gamma$-subsemimodule $\Delta$.
-
-
-We then analyze an example,  
-see Example \ref{fibration for 6 9 19},
+The main objects of study in this article are the punctual Hilbert schemes of irreducible curve singularities defined over an algebraically closed field  $ k $  of characteristic～ $ 0 $ . Given a curve singularity  $ (C,O) $  and an integer  $ \ell \in \mathbb{N} $ , the  $ \ell $ -th punctual Hilbert scheme of  $ (C,O) $ , denoted  $ C^{[\ell]} $ , is the moduli space parametrizing  $ 0 $ -dimensional subschemes of  $ (C,O) $  of length  $ \ell $ . This is a special case of Grothendieck's Hilbert scheme, which more generally parametrizes subschemes of projective space with fixed Hilbert polynomial. From an algebraic viewpoint, let  $ A = \mathcal{O}_{(C,O)} $  denote the local ring of  $ C $  at  $ O $ . Then the  $ k $ -points of  $ C^{[\ell]} $  are in bijection with ideals of colength  $ \ell $  in  $ A $ :
  
-    of a plane curve singularity with two Puiseux pairs. In this case, the morphism \[\pi_{\Delta}: C^{[\Delta]} \longrightarrow C^{[m(\Delta)]}\] still induces a piecewise trivial fibration, but the dimension of the fiber is not solely governed by the number of minimal generators below $\gamma_\Delta$.  
-     New phenomenas
 
+$$
 
+C^{[\ell]} := \left\{ I \subset A \mid I \text{ is an ideal and } \dim_k \frac{A}{I} = \ell \right\}.
 
-One important application of Theorem~\ref{thm:fibration} is the development of an algorithm to compute the motivic Hilbert zeta function for irreducible curve singularities, as introduced in \cite{bejleri2020motivic}:
-\[
-Z_{(C, O)}^{\mathrm{Hilb}}(q) := 1 + \sum_{\ell=1}^{\infty} \big[C^{[\ell]}\big] \, q^{\ell} \in K_0({\mathrm{Var}}_{{\mathbb{C}}})[[q]],
-\]
-where $K_0({\mathrm{Var}}_{{\mathbb{C}}})$ denotes the Grothendieck ring of varieties over ${\mathbb{C}}$. 
-The recursive structure of the tree $G_\Gamma$, combined with the piecewise trivial fibration property established in Theorem~\ref{thm:fibration}, allows us to express each class $\big[C^{[\ell]}\big]$ in terms of classes of strata $C^{[\Delta]}$ and their fibrations, leading to an effective recursive computation.
+$$
 
+ 
+Let  $ \overline{A} $  denote the integral closure of  $ A $  in its total ring of fractions. Since  $ C $  is an irreducible curve singularity,  $ \overline{A} $  is a discrete valuation ring. The associated valuation is denoted by  $ v \colon \overline{A} \setminus \{0\} \to \mathbb{N} $ , and we define the delta invariant of the singularity by
+ 
 
+$$
 
+\delta := \dim_k \frac{\overline{A}}{A}.
 
+$$
 
+ 
+Pfister and Steenbrink proved that the punctual Hilbert schemes  $ C^{[\ell]} $  can be embedded in a closed linear subvariety of the Grassmannian  $ \mathrm{Gr}(\delta,\overline{A}/I(2\delta)), $  where  $ I(2\delta) $  is the ideal consisting of elements  $ h \in \overline{A} $  (or equivalently of  $ A $ ) whose valuation  $ v(h) $  is larger than or equal to  $ 2\delta. $  Moreover, the authors ``provided'' the defining equations of this embedding. In general, even when the defining equations of punctual Hilbert schemes are known, it remains difficult to understand their geometry or to compute their invariants.
 
-\begin{theorem}\label{thm:zeta-formulas}(see Theorem \ref{thm:E6E8})
-For the simple singularities of types $A_{2d}$, $E_6$, $E_8$, $W_8$, and $Z_{10}$, the motivic Hilbert zeta function is given by the following \textbf{rational} expressions in $K_0({\mathrm{Var}}_{{\mathbb{C}}})[[q]]$:
+Progress in understanding the geometry of punctual Hilbert schemes has been relatively slow, due in part to the complexity of their structure even in simple singular cases. Soma and Watari \cite{soma2015punctual, soma2014punctual} studied the geometry of punctual Hilbert schemes for plane curve singularities of types  $ A_{2d} $ ,  $ E_6 $ , and  $ E_8 $ . In the case of unibranched curve singularities, the punctual Hilbert scheme  $ C^{[\ell]} $  coincides with the compactified Jacobian  $ \overline{J C} $  for sufficiently large  $ \ell $  \cite{piontkowski2007topology}.
 
-\[
-Z_{(C_{A_{2d}}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 - (\mathbb{L} q^2)^{d+1}}{(1 - q)(1 - \mathbb{L} q^2)}
-\]
+For curves defined by the equation  $ y^m - x^n = 0 $  with  $ \gcd(m,n) = 1 $ , Lusztig and Smelt computed the homology of the associated Hilbert schemes. Piontkowski \cite{piontkowski2007topology} later extended these results to curves with a single Puiseux pair. Subsequently, Gorsky, Mazin, and Oblomkov \cite{gorsky2022generic} derived explicit formulas for the Poincar\'e polynomials of Hilbert schemes associated with singularities having Puiseux exponents  $ (nd, md, md+1) $ .
 
+For curve singularities with a single Puiseux pair, Oblomkov, Rasmussen, and Shende proved that the punctual Hilbert scheme  $ C^{[\ell]} $  admits a stratification by affine spaces, a result that plays a foundational role in the motivic study of these moduli spaces.
 
-\[
-Z_{(C_{E_6}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + \mathbb{L} q^2 + \mathbb{L}^2 q^3 + \mathbb{L}^2 q^4 + \mathbb{L}^3 q^6}{1 - q}
-\]
+Recently, punctual Hilbert schemes have attracted considerable attention from two distinct but interconnected perspectives, both of which provide key motivations for this work.
+On one hand, these schemes are the fundamental building blocks for the \emph{motivic Hilbert zeta function}, introduced by Bejleri, Ranganathan and Vakil～\cite{bejleri2020motivic}. This zeta function is defined as the generating series of the classes of punctual Hilbert schemes in the Grothendieck ring of varieties:
+ 
 
+$$
 
-\[
-Z_{(C_{E_8}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + \mathbb{L} q^2 + \mathbb{L}^2 q^3 + \mathbb{L}^2 q^4 + \mathbb{L}^3 q^5 + \mathbb{L}^3 q^6 + \mathbb{L}^4 q^8}{1 - q}
-\]
+Z^{\mathrm{Hilb}}_{X}(q) = \sum_{\ell \geq 0} \big[\mathrm{Hilb}^{[\ell]}(X)\big]q^\ell \in 1+q K_0(\mathrm{Var}_k)[[q]].
 
+$$
 
-\[
-Z_{(C_{W_8}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + \mathbb{L} q^2 + 2\mathbb{L}^2 q^3 + \mathbb{L}^3 q^4 + \mathbb{L}^3 q^5 + (\mathbb{L}^3 + \mathbb{L}^4) q^6 + \mathbb{L}^4 q^8}{1 - q}
-\]
+ 
+Compared to the classical motivic zeta function of Kapranov～\cite{kapranov2000elliptic}, the motivic Hilbert zeta function provides a finer invariant, capturing detailed information about the singularities of a variety  $ X $  defined over an algebraically closed field  $ k $ .
 
+On the other hand, a series of conjectures by Oblomkov, Rasmussen, and Shende posits a deep connection between the geometry of punctual Hilbert schemes of plane curve singularities and the topology of associated algebraic knots, particularly over  $ \mathbb{C} $ . More precisely, they conjecture that the (reduced) Khovanov--Rozansky homology of the link of the singularity can be recovered from the homology of the Hilbert schemes. Maulik～\cite{maulik2016stable} proved the first of these conjectures using an inductive argument based on blow-ups, analyzing the variation of both Hilbert schemes and the HOMFLY polynomial under such transformations. Notably, his approach yields significant geometric insight into the structure of punctual Hilbert schemes.
 
-\[
-Z_{(C_{Z_{10}}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + (\mathbb{L} + \mathbb{L}^2) q^2 + \mathbb{L}^2 q^3 + 2\mathbb{L}^3 q^4 + \mathbb{L}^3 q^5 + 2\mathbb{L}^4 q^6 + (\mathbb{L}^4 + \mathbb{L}^5) q^8 + \mathbb{L}^5 q^{10}}{1 - q}
-\]
-where $\mathbb{L} = [\mathbb{A}^1]$ 
- denotes the Lefschetz motive in $K_0({\mathrm{Var}}_{{\mathbb{C}}})$. 
+Very recently, Rossinelli～\cite{rossinelli2024motivic} discovered a new connection between \emph{curvilinear} punctual Hilbert schemes and the Igusa motivic zeta function, further highlighting the role of Hilbert schemes as a unifying object in singularity theory and motivic integration. Diaconescu, Porta, Sala and Vosoughinia \cite{diaconescu2023flops} made a progress in the case of space curve singularities. Fasola, Graffeo, Lewanski and Ricolfi \cite{fasola2025invariants} computed the motivic classes of punctual nested Hilbert schemes on a smooth pointed surface. Graffeo, Monavari, Moschetti, and Ricolfi \cite{graffeo2024motive} proved a closed formula for the generating function of the motives  $ [\mathrm{Hilb}^d(\mathbb{A}^n)_0] \in K_0(\mathrm{Var}_{\mathbb{C}}) $  of punctual Hilbert schemes, summing over  $ n $ , for fixed  $ d > 0 $ .
+
+The main goal of this paper is to describe certain geometric aspects of the punctual Hilbert schemes associated with curve singularities. We focus on two classes: first, plane curve singularities defined by equations of the form  $ y^m - x^n = 0 $  with  $ \gcd(m,n) = 1 $ ; and second, (not necessarily plane) curve singularities whose semigroup  $ \Gamma := v(A\setminus \{0\}) $  is monomial.
+
+The latter class consists of singularities for which, within their equisingularity class—i.e., the set of curve singularities sharing the same semigroup—there exists a unique representative up to analytic isomorphism (see Section～\ref{Appendix} for further details). This class was originally introduced by Pfister and Steenbrink～\cite{pfister1992reduced}, and plays a distinguished role in the classification of unibranch curve singularities due to its rigidity under deformation.
+
+To achieve this, we make extensive use of  $ \Gamma $ -subsemimodules. A \emph{ $ \Gamma $ -subsemimodule} is a subset  $ \Delta \subset \Gamma $  such that  $ \Gamma + \Delta \subseteq \Delta $ . It follows directly from the properties of ideals and the valuation  $ v $  that, for any ideal  $ I \subset A $ , the value set 
+ 
+
+$$
+
+v(I\setminus \{0\}) = \{ v(f) \mid f \in I \setminus \{0\}\}
+
+$$
+
+ 
+is a  $ \Gamma $ -subsemimodule of  $ \Gamma $ . This fundamental observation links the algebraic structure of ideals in  $ \mathcal{O}_{C,O} $  to the combinatorics of the semigroup  $ \Gamma $ .
+
+Inspired by recent work of Soma and Watari \cite{soma2014punctual} on the geometry of Hilbert schemes, as well as that of Oblomkov, Rasmussen, and Shende \cite{oblomkov2018hilbert} on knot invariants and curve singularities, we associate to a curve singularity with semigroup  $ \Gamma $  a leveled graph  $ G_\Gamma $  defined as follows.
+
+The vertices at level  $ \ell $  are the elements of the set
+ 
+
+$$
+
+\mathscr{D}_\ell := \left\{ \Delta \subset \Gamma \mid \Delta \text{ is a } \Gamma\text{-subsemimodule with } \#(\Gamma \setminus \Delta) = \ell \right\}.
+
+$$
+
+ 
+We draw a directed edge from  $ \Delta \in \mathscr{D}_\ell $  to  $ \Delta' \in \mathscr{D}_{\ell-1} $  if 
+ 
+
+$$
+
+\Delta' = m(\Delta) := \Delta \cup \{\gamma_\Delta\}, \quad \text{where} \quad \gamma_\Delta := \max(\Gamma \setminus \Delta).
+
+$$
+
+ 
+We study the graph  $ G_\Gamma $  and prove that it has the structure of a tree (Theorem～\ref{Tree}). Furthermore, each subsemimodule  $ \Delta \in \mathscr{D}_{\ell} $  defines a constructible subset  $ C^{[\Delta]}\subseteq C^{[\ell]}. $  One of the main results of the paper, building on the work in \cite{oblomkov2018hilbert} regarding the defining equations of  $ C^{[\Delta]} $ , is that for certain curve singularities an edge of the graph induces a piecewise trivial fibration:
+
+We study the graph  $ G_\Gamma $  and prove that it has the structure of a tree (Theorem～\ref{Tree}). Furthermore, each subsemimodule  $ \Delta \in \mathscr{D}_\ell $  defines a constructible subset  $ C^{[\Delta]} \subseteq C^{[\ell]} $ , consisting of all ideals  $ I \subset A $  in  $ C^{[\ell]} $  such that  $ v(I\setminus \{0\}) = \Delta $ .
+
+\begin{theorem}[Main Theorem]\label{thm:fibration}(see also Theorem～\ref{piecewise fibration})
+Let  $ C $  be either a plane curve singularity defined by  $ x^p - y^q = 0 $  with  $ \gcd(p,q) = 1 $ ,
+\W{we can try to replace  $ (p,q) $  by  $ (\alpha, \beta) $  or other notation ? Because the notation  $ n,m $  is already used in the proof of this Theorem.}
+or a curve singularity with a monomial semigroup  $ \Gamma $ . Let  $ \Delta $  be a  $ \Gamma $ -subsemimodule of  $ \Gamma $ , and let  $ \gamma_\Delta = \max(\Gamma \setminus \Delta) $ . Then there exists a canonical morphism
+ 
+
+$$
+
+\pi_{\Delta} \colon C^{[\Delta]} \longrightarrow C^{[m(\Delta)]},
+
+$$
+
+ 
+which is isomorphic to a trivial fibration over its image. The fiber of  $ \pi $  is isomorphic to an affine space  $ \mathbb{A}^{B(\Delta)} $ , where
+ 
+
+$$
+
+B(\Delta) = \# \left\{ \gamma_i \mid \gamma_i < \gamma_\Delta \right\}
+
+$$
+
+ 
+i.e., the number of minimal generators below  $ \gamma_\Delta $ , and the  $ \gamma_i $  range over the minimal generators of  $ \Delta $  as a  $ \Gamma $ -subsemimodule.
 \end{theorem}
 
+We explicitly determine the image of this morphism. In the case of plane curve singularities defined by  $ x^p - y^q = 0 $  with  $ \gcd(p,q)=1 $ , or more generally for singularities with monomial semigroups, this allows us to recover a key result from \cite{oblomkov2018hilbert}:  $ C^{[\Delta]} $  is an affine space, and its dimension is completely determined by the combinatorial invariants of the  $ \Gamma $ -subsemimodule  $ \Delta $ .
 
-For the singularities of types $A_{2d}$, $E_6$, and $E_8$, these formulas were independently obtained by Watari~\cite{watari2024motivic}, using a different approach based on explicit geometric analysis and results from~\cite{soma2014punctual, soma2015punctual}. Our method, based on the tree structure $G_\Gamma$ and piecewise trivial fibrations, provides a unified and algorithmic derivation that extends naturally to more general singularities, including $W_8$ and $Z_{10}$.\\
+We then analyze an example, see Example～\ref{fibration for 6 9 19}, of a plane curve singularity with two Puiseux pairs. In this case, the morphism 
+ 
 
+$$
 
+\pi_{\Delta}: C^{[\Delta]} \longrightarrow C^{[m(\Delta)]}
 
+$$
 
-In the  Section \ref{Fixed-number of generators} , in relation to the conjectures of Oblomkov, Rasmussen, Shende, and Maulik~\cite{oblomkov2012hilbert, oblomkov2018hilbert, maulik2016stable}, we study the defining equations of certain stratifications of the punctual Hilbert schemes. For a given $\Gamma$-subsemimodule $\Delta$ and an integer $m \in \mathbb{N}$, we consider the  
-\[
+ 
+still induces a piecewise trivial fibration, but the dimension of the fiber is not solely governed by the number of minimal generators below  $ \gamma_\Delta $ . New phenomena
+
+One important application of Theorem～\ref{thm:fibration} is the development of an algorithm to compute the motivic Hilbert zeta function for irreducible curve singularities, as introduced in \cite{bejleri2020motivic}:
+ 
+
+$$
+
+Z_{(C, O)}^{\mathrm{Hilb}}(q) := 1 + \sum_{\ell=1}^{\infty} \big[C^{[\ell]}\big] \, q^{\ell} \in K_0({\mathrm{Var}}_{{\mathbb{C}}})[[q]],
+
+$$
+
+ 
+where  $ K_0({\mathrm{Var}}_{{\mathbb{C}}}) $  denotes the Grothendieck ring of varieties over  $ {\mathbb{C}} $ . The recursive structure of the tree  $ G_\Gamma $ , combined with the piecewise trivial fibration property established in Theorem～\ref{thm:fibration}, allows us to express each class  $ \big[C^{[\ell]}\big] $  in terms of classes of strata  $ C^{[\Delta]} $  and their fibrations, leading to an effective recursive computation.
+
+\begin{theorem}\label{thm:zeta-formulas}(see Theorem～\ref{thm:E6E8})
+For the simple singularities of types  $ A_{2d} $ ,  $ E_6 $ ,  $ E_8 $ ,  $ W_8 $ , and  $ Z_{10} $ , the motivic Hilbert zeta function is given by the following \textbf{rational} expressions in  $ K_0({\mathrm{Var}}_{{\mathbb{C}}})[[q]] $ :
+ 
+
+$$
+
+Z_{(C_{A_{2d}}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 - (\mathbb{L} q^2)^{d+1}}{(1 - q)(1 - \mathbb{L} q^2)}
+
+$$
+
+ 
+ 
+
+$$
+
+Z_{(C_{E_6}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + \mathbb{L} q^2 + \mathbb{L}^2 q^3 + \mathbb{L}^2 q^4 + \mathbb{L}^3 q^6}{1 - q}
+
+$$
+
+ 
+ 
+
+$$
+
+Z_{(C_{E_8}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + \mathbb{L} q^2 + \mathbb{L}^2 q^3 + \mathbb{L}^2 q^4 + \mathbb{L}^3 q^5 + \mathbb{L}^3 q^6 + \mathbb{L}^4 q^8}{1 - q}
+
+$$
+
+ 
+ 
+
+$$
+
+Z_{(C_{W_8}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + \mathbb{L} q^2 + 2\mathbb{L}^2 q^3 + \mathbb{L}^3 q^4 + \mathbb{L}^3 q^5 + (\mathbb{L}^3 + \mathbb{L}^4) q^6 + \mathbb{L}^4 q^8}{1 - q}
+
+$$
+
+ 
+ 
+
+$$
+
+Z_{(C_{Z_{10}}, O)}^{{\mathrm{Hilb}}}(q) = \frac{1 + (\mathbb{L} + \mathbb{L}^2) q^2 + \mathbb{L}^2 q^3 + 2\mathbb{L}^3 q^4 + \mathbb{L}^3 q^5 + 2\mathbb{L}^4 q^6 + (\mathbb{L}^4 + \mathbb{L}^5) q^8 + \mathbb{L}^5 q^{10}}{1 - q}
+
+$$
+
+ 
+where  $ \mathbb{L} = [\mathbb{A}^1] $  denotes the Lefschetz motive in  $ K_0({\mathrm{Var}}_{{\mathbb{C}}}) $ . 
+\end{theorem}
+
+For the singularities of types  $ A_{2d} $ ,  $ E_6 $ , and  $ E_8 $ , these formulas were independently obtained by Watari～\cite{watari2024motivic}, using a different approach based on explicit geometric analysis and results from～\cite{soma2014punctual, soma2015punctual}. Our method, based on the tree structure  $ G_\Gamma $  and piecewise trivial fibrations, provides a unified and algorithmic derivation that extends naturally to more general singularities, including  $ W_8 $  and  $ Z_{10} $ .
+
+In Section～\ref{Fixed-number of generators}, in relation to the conjectures of Oblomkov, Rasmussen, Shende, and Maulik～\cite{oblomkov2012hilbert, oblomkov2018hilbert, maulik2016stable}, we study the defining equations of certain stratifications of the punctual Hilbert schemes. For a given  $ \Gamma $ -subsemimodule  $ \Delta $  and an integer  $ m \in \mathbb{N} $ , we consider the 
+ 
+
+$$
+
 C^{[\Delta], \leq m} \subseteq C^{[\Delta]},
-\]
-whose closed points correspond to ideals $I \subset A = \mathcal{O}_{C,O}$ such that $v(I\setminus \{0\}) = \Delta$ and $I$ can be minimally generated by at most $m$ elements. Note that $C^{[\Delta], \leq m} $ is a constructible set, see Proposition \ref{decomposition of C Delta m}. 
 
+$$
 
-To describe this subset geometrically, we introduce a stratification defined in terms of \emph{syzygies over $\Gamma$} among the minimal generators of $\Delta$. Specifically, for each subset $\underline{i} = \{i_1, \dots, i_m\} \subseteq \{1, \dots, n\}$ of indices corresponding to a choice of $m$ minimal generators of $\Delta$, and for each combinatorial type of syzygy $\underline{j}$ (encoding dependencies among the generators), we define a constructible subset 
-\[
+ 
+whose closed points correspond to ideals  $ I \subset A = \mathcal{O}_{C,O} $  such that  $ v(I\setminus \{0\}) = \Delta $  and  $ I $  can be minimally generated by at most  $ m $  elements. Note that  $ C^{[\Delta], \leq m} $  is a constructible set, see Proposition～\ref{decomposition of C Delta m}.
+
+To describe this subset geometrically, we introduce a stratification defined in terms of \emph{syzygies over  $ \Gamma $ } among the minimal generators of  $ \Delta $ . Specifically, for each subset  $ \underline{i} = \{i_1, \dots, i_m\} \subseteq \{1, \dots, n\} $  of indices corresponding to a choice of  $ m $  minimal generators of  $ \Delta $ , and for each combinatorial type of syzygy  $ \underline{j} $  (encoding dependencies among the generators), we define a constructible subset 
+ 
+
+$$
+
 Y_{\underline{i}_{\underline{j}}} \subseteq C^{[\Delta], \leq m}.
-\]
-These subsets are defined by explicit algebraic equations and inequalities derived from the semigroup structure and the valuations of generators and their relations.
 
+$$
+
+ 
+These subsets are defined by explicit algebraic equations and inequalities derived from the semigroup structure and the valuations of generators and their relations.
 
 We prove the following structure theorem:
 \begin{theorem}\label{thm:stratification}
-The set $C^{[\Delta], \leq m}$ admits a finite decomposition
-\[
+The set  $ C^{[\Delta], \leq m} $  admits a finite decomposition
+ 
+
+$$
+
 C^{[\Delta], \leq m} = \bigcup_{\substack{\underline{i} \subseteq \{1,\dots,n\} \\ |\underline{i}| = m}} \bigcup_{\underline{j}} Y_{\underline{i}_{\underline{j}}},
-\]
-where each $Y_{\underline{i}_{\underline{j}}}$ is a locally closed constructible subset defined by syzygy conditions on the generators indexed by $\underline{i}$.
 
+$$
 
-Moreover, for an irreducible curve singularity with semigroup $\Gamma = \langle p, q \rangle$ with $\gcd(p,q)=1$, each stratum $Y_{\underline{i}_{\underline{j}}}$ is isomorphic to a fibred product
-\[\label{eq:Yij-geometry}
+ 
+where each  $ Y_{\underline{i}_{\underline{j}}} $  is a locally closed constructible subset defined by syzygy conditions on the generators indexed by  $ \underline{i} $ .
+Moreover, for an irreducible curve singularity with semigroup  $ \Gamma = \langle p, q \rangle $  with  $ \gcd(p,q)=1 $ , each stratum  $ Y_{\underline{i}_{\underline{j}}} $  is isomorphic to a fibred product
+ 
+
+$$
+
 Y_{\underline{i}_{\underline{j}}} \cong ({\mathbb{C}}^*)^{n - m} \times_{\operatorname{Spec}{\mathbb{C}}} \mathbb{A}^{N(\Delta) - n + m},
-\]
-where $n$ is the number of minimal generators of $\Delta$ as a $\Gamma$-subsemimodule, and $N(\Delta)$ is the dimension of  $C^{[\Delta]}$ which is an affine space  proven in  \parencite[Theorem 13]{oblomkov2018hilbert}.  
+
+$$
+
+ 
+where  $ n $  is the number of minimal generators of  $ \Delta $  as a  $ \Gamma $ -subsemimodule, and  $ N(\Delta) $  is the dimension of  $ C^{[\Delta]} $  which is an affine space proven in \parencite[Theorem 13]{oblomkov2018hilbert}. 
 \end{theorem}
 
+Moreover, in the case of an irreducible curve singularity with semigroup  $ \Gamma = \langle p, q \rangle $  (where  $ \gcd(p,q) = 1 $ ), we can explicitly determine the intersections of the strata  $ Y_{\underline{i}_{\underline{j}}} $ . These intersections are governed by refinements of syzygy conditions and encode the combinatorial dependencies among different minimal generating sets. This geometric understanding provides a foundation for computing a refined motivic invariant that tracks not only the colength of ideals but also their minimal number of generators.
 
-
-
-
-Moreover, in the case of an irreducible curve singularity with semigroup $\Gamma = \langle p, q \rangle$ (where $\gcd(p,q) = 1$), we can explicitly determine the intersections of the strata $Y_{\underline{i}_{\underline{j}}}$. These intersections are governed by refinements of syzygy conditions and encode the combinatorial dependencies among different minimal generating sets. This geometric understanding provides a foundation for computing a refined motivic invariant that tracks not only the colength of ideals but also their minimal number of generators.
-
-
-To this end, for $m, \ell \in \mathbb{N}$, let $C^{[\ell],m} \subseteq C^{[\ell]}$ denote the constructible subset consisting of ideals $I \subset A = \mathcal{O}_{C,O}$ of colength $\ell$ that require exactly $m$ minimal generators. We define the \emph{generalized motivic Hilbert zeta function}:
-
+To this end, for  $ m, \ell \in \mathbb{N} $ , let  $ C^{[\ell],m} \subseteq C^{[\ell]} $  denote the constructible subset consisting of ideals  $ I \subset A = \mathcal{O}_{C,O} $  of colength  $ \ell $  that require exactly  $ m $  minimal generators. We define the \emph{generalized motivic Hilbert zeta function}:
 \begin{align}
-Zm^{\mathrm{Hilb}}_{(C,O)}(a^2, q^2) 
-&= \sum_{\ell \geq 0} \sum_{m \geq 1} q^{2\ell} (1 - a^2)^{m-1} \big[C^{[\ell],m}\big]\nonumber  \\
+Zm^{\mathrm{Hilb}}_{(C,O)}(a^2, q^2) &= \sum_{\ell \geq 0} \sum_{m \geq 1} q^{2\ell} (1 - a^2)^{m-1} \big[C^{[\ell],m}\big] \nonumber \\
 &= \sum_{\ell \geq 0} \sum_{\Delta \in \mathscr{D}_\ell} \sum_{m \geq 1} q^{2\ell} (1 - a^2)^{m-1} \big[C^{[\Delta],m}\big], \nonumber
 \end{align}
-where the second sum runs over all $\Gamma$-subsemimodules $\Delta$ with $\#(\Gamma \setminus \Delta) = \ell$, and $C^{[\Delta],m} = C^{[\Delta]} \cap C^{[\ell],m}$.
+where the second sum runs over all  $ \Gamma $ -subsemimodules  $ \Delta $  with  $ \#(\Gamma \setminus \Delta) = \ell $ , and  $ C^{[\Delta],m} = C^{[\Delta]} \cap C^{[\ell],m} $ .
 
-
-This series $Z^{\mathrm{Hilb}}_{(C,O)}(a^2, q^2)$, introduced in this paper, generalizes the motivic zeta function studied in \cite{oblomkov2012hilbert}. There, the Euler characteristic specialization (i.e., the point-counting or topological Euler characteristic) of this series was conjecturally related to the HOMFLY polynomial of the associated algebraic knot. Our construction lifts this invariant to the Grothendieck ring of varieties $K_0({\mathrm{Var}}_{{\mathbb{C}}})$, thereby encoding richer geometric information about the stratification of the Hilbert schemes by the number of generators.
-
+This series  $ Z^{\mathrm{Hilb}}_{(C,O)}(a^2, q^2) $ , introduced in this paper, generalizes the motivic zeta function studied in \cite{oblomkov2012hilbert}. There, the Euler characteristic specialization (i.e., the point-counting or topological Euler characteristic) of this series was conjecturally related to the HOMFLY polynomial of the associated algebraic knot. Our construction lifts this invariant to the Grothendieck ring of varieties  $ K_0({\mathrm{Var}}_{{\mathbb{C}}}) $ , thereby encoding richer geometric information about the stratification of the Hilbert schemes by the number of generators.
 
 \section{Punctual Hilbert schemes}\label{Punctual Hilbert schemes}
-In this section, we recall the definition of the punctual Hilbert schemes of a curve singularity and review some fundamental properties. Let $(C,O)$ be the germ of a unibranch curve singularity defined over an algebraically closed field $k$ of characteristic zero, and let $A := \mathcal{O}_{C,O}$ denote its local ring at $O$. Then $A$ is a complete one-dimensional local domain, and its integral closure $\overline{A}$ in its field of fractions is a discrete valuation ring, isomorphic to $k[[t]]$.
+In this section, we recall the definition of the punctual Hilbert schemes of a curve singularity and review some fundamental properties. Let  $ (C,O) $  be the germ of a unibranch curve singularity defined over an algebraically closed field  $ k $  of characteristic zero, and let  $ A := \mathcal{O}_{C,O} $  denote its local ring at  $ O $ . Then  $ A $  is a complete one-dimensional local domain, and its integral closure  $ \overline{A} $  in its field of fractions is a discrete valuation ring, isomorphic to  $ k[[t]] $ .
 
+Let  $ v \colon \overline{A} \setminus \{0\} \to \mathbb{N} $  be the associated discrete valuation, extended by  $ v(0) = \infty $ , which maps a nonzero power series in  $ k[[t]] $  to its order in  $ t $ . The \emph{value semigroup} of  $ A $  (or of the singularity  $ (C,O) $ ) is defined as
+ 
 
-Let $v \colon \overline{A} \setminus \{0\} \to \mathbb{N}$ be the associated discrete valuation, extended by $v(0) = \infty$, which maps a nonzero power series in $k[[t]]$ to its order in $t$. The \emph{value semigroup} of $A$ (or of the singularity $(C,O)$) is defined as
-\[
+$$
+
 \Gamma := v(A \setminus \{0\}) \subseteq \mathbb{N}.
-\]
-This is a numerical semigroup: a submonoid of $\mathbb{N}$ with finite complement.
 
+$$
 
-For $n \in \mathbb{N}$, define the ideal
-\[
+ 
+This is a numerical semigroup: a submonoid of  $ \mathbb{N} $  with finite complement.
+
+For  $ n \in \mathbb{N} $ , define the ideal
+ 
+
+$$
+
 \overline{I}(n) := \{ f \in \overline{A} \mid v(f) \geq n \}
-\]
-in $\overline{A}$, and set $I(n) := \overline{I}(n) \cap A$, which is an ideal in $A$. The \emph{conductor} of $A$ in $\overline{A}$ is the smallest integer $c$ such that $\overline{I}(c) \subset A$, i.e.,
-\[
+
+$$
+
+ 
+in  $ \overline{A} $ , and set  $ I(n) := \overline{I}(n) \cap A $ , which is an ideal in  $ A $ . The \emph{conductor} of  $ A $  in  $ \overline{A} $  is the smallest integer  $ c $  such that  $ \overline{I}(c) \subset A $ , i.e.,
+ 
+
+$$
+
 c := \min\left\{ n \in \mathbb{N} \mid \overline{I}(n) \subset A \right\}.
-\]
-Equivalently, $c$ is the smallest element such that $t^c k[[t]] \subseteq A$ under a fixed isomorphism $\overline{A} \cong k[[t]]$.
 
+$$
 
-The \emph{$\delta$-invariant} of the singularity is defined as
-\[
+ 
+Equivalently,  $ c $  is the smallest element such that  $ t^c k[[t]] \subseteq A $  under a fixed isomorphism  $ \overline{A} \cong k[[t]] $ .
+
+The \emph{ $ \delta $ -invariant} of the singularity is defined as
+ 
+
+$$
+
 \delta := \dim_k(\overline{A}/A) = \#(\mathbb{N} \setminus \Gamma).
-\]
+
+$$
+
+ 
 It measures the arithmetic genus defect of the singularity. We have the inequalities
-\[
+ 
+
+$$
+
 \delta + 1 \leq c \leq 2\delta,
-\]
-and $c = 2\delta$ if and only if $A$ is Gorenstein~\cite{serre1959groupes}.
 
+$$
 
-For $\ell \in \mathbb{Z}_{>0}$, the \emph{$\ell$-th punctual Hilbert scheme} of $(C,O)$ is the moduli space
-\[
+ 
+and  $ c = 2\delta $  if and only if  $ A $  is Gorenstein～\cite{serre1959groupes}.
+
+For  $ \ell \in \mathbb{Z}_{>0} $ , the \emph{ $ \ell $ -th punctual Hilbert scheme} of  $ (C,O) $  is the moduli space
+ 
+
+$$
+
 C^{[\ell]} := \left\{ I \subset A \mid I \text{ is an ideal with } \dim_k(A/I) = \ell \right\}.
-\]
-It parametrizes zero-dimensional subschemes of length $\ell$ supported at $O$.\\
 
+$$
 
+ 
+It parametrizes zero-dimensional subschemes of length  $ \ell $  supported at  $ O $ .
 
+Pfister and Steenbrink～\cite{pfister1992reduced} showed that the punctual Hilbert schemes of a unibranch curve singularity can be embedded as closed subvarieties of a Grassmannian. More precisely, let  $ \mathscr{M} $  denote the reduced subscheme of the Grassmannian  $ \operatorname{Gr}(\delta, \overline{A}/I(2\delta)) $  defined by
+ 
 
+$$
 
-
-
-Pfister and Steenbrink~\cite{pfister1992reduced} showed that the punctual Hilbert schemes of a unibranch curve singularity can be embedded as closed subvarieties of a Grassmannian. More precisely, let $\mathscr{M}$ denote the reduced subscheme of the Grassmannian $\operatorname{Gr}(\delta, \overline{A}/I(2\delta))$ defined by
-\[
 \mathscr{M} := \left\{ W \in \operatorname{Gr}(\delta, \overline{A}/I(2\delta)) \mid W \text{ is an } A\text{-submodule of } \overline{A}/I(2\delta) \right\}.
-\]
-One can verify that $\mathscr{M}$ is a linear subvariety of the Grassmannian—i.e., it is defined by a system of linear equations in the Plücker coordinates.
 
+$$
 
-\begin{proposition}[\cite{pfister1992reduced}, Theorem~3]\label{prop:pfister-steenbrink}
-For every $\ell > 0$, there exists a closed embedding
-\[
+ 
+One can verify that  $ \mathscr{M} $  is a linear subvariety of the Grassmannian—i.e., it is defined by a system of linear equations in the Pl\"ucker coordinates.
+
+\begin{proposition}[\cite{pfister1992reduced}, Theorem～3]\label{prop:pfister-steenbrink}
+For every  $ \ell > 0 $ , there exists a closed embedding
+ 
+
+$$
+
 \phi_\ell \colon C^{[\ell]} \longrightarrow \mathscr{M}.
-\]
-Moreover, $\phi_\ell$ is bijective (as a map of sets) when $\ell \geq c$, the conductor of the singularity.
+
+$$
+
+ 
+Moreover,  $ \phi_\ell $  is bijective (as a map of sets) when  $ \ell \geq c $ , the conductor of the singularity.
 \end{proposition}
 
+Since  $ c \leq 2\delta $ , this implies that for  $ \ell \geq 2\delta $ , the structure of  $ C^{[\ell]} $  stabilizes in the sense that its points are completely determined by the fixed ambient variety  $ \mathscr{M} $ . Consequently, to understand the classes  $ [C^{[\ell]}] $  in the Grothendieck ring of varieties  $ K_0(\mathrm{Var}_k) $ , it suffices to study the punctual Hilbert schemes for  $ \ell < 2\delta $ .
 
-Since $c \leq 2\delta$, this implies that for $\ell \geq 2\delta$, the structure of $C^{[\ell]}$ stabilizes in the sense that its points are completely determined by the fixed ambient variety $\mathscr{M}$. Consequently, to understand the classes $[C^{[\ell]}]$ in the Grothendieck ring of varieties $K_0(\mathrm{Var}_k)$, it suffices to study the punctual Hilbert schemes for $\ell < 2\delta$.
+A powerful method to compute these classes is to stratify each  $ C^{[\ell]} $  into constructible subsets using the valuation  $ v $  and the value semigroup  $ \Gamma = v(A \setminus \{0\}) $ . To this end, recall that a subset  $ \Delta \subset \Gamma  $  is called a \emph{ $ \Gamma $ -subsemimodule} if
+ 
 
+$$
 
-A powerful method to compute these classes is to stratify each $C^{[\ell]}$ into constructible subsets using the valuation $v$ and the value semigroup $\Gamma = v(A \setminus \{0\})$. To this end, recall that a subset $\Delta \subset \Gamma $ is called a \emph{$\Gamma$-subsemimodule} if
-\[
 \Delta + \Gamma \subseteq \Delta.
-\]
-Note that such a $\Delta$ need not be contained in $\Gamma$ a priori, but if $\Delta = v(I \setminus \{0\})$ for some nonzero ideal $I \subset A$, then $\Delta \subset \Gamma$. Indeed, for any $f \in I$, $g \in A$, we have $gf \in I$, and $v(gf) = v(g) + v(f)$, so $v(I \setminus \{0\})$ is closed under addition by elements of $\Gamma$, hence is a $\Gamma$-subsemimodule.
 
+$$
 
-For any $\Gamma$-subsemimodule $\Delta$, we define the stratum
-\[
+ 
+Note that such a  $ \Delta $  need not be contained in  $ \Gamma $  a priori, but if  $ \Delta = v(I \setminus \{0\}) $  for some nonzero ideal  $ I \subset A $ , then  $ \Delta \subset \Gamma $ . Indeed, for any  $ f \in I $ ,  $ g \in A $ , we have  $ gf \in I $ , and  $ v(gf) = v(g) + v(f) $ , so  $ v(I \setminus \{0\}) $  is closed under addition by elements of  $ \Gamma $ , hence is a  $ \Gamma $ -subsemimodule.
+
+For any  $ \Gamma $ -subsemimodule  $ \Delta $ , we define the stratum
+ 
+
+$$
+
 C^{[\Delta]} := \left\{ I \in C^{[\ell]} \mid \ell = \#(\Gamma \setminus \Delta),\ v(I \setminus \{0\}) = \Delta \right\}.
-\]
 
+$$
 
-
-
-
-
+ 
 Consider the set
-\[
+ 
+
+$$
+
 \mathscr{D}_\ell := \left\{ \Delta \subset \Gamma \mid \Delta \text{ is a } \Gamma\text{-subsemimodule with } \#(\Gamma \setminus \Delta) = \ell \right\}.
-\]
 
+$$
 
+ 
 
-
-\begin{lemma}\parencite[Lemme 5.1.24]{pol2016singularites} For positive integer $\ell$, 
-an ideal $I$ of $A$ belongs to  $C^{[\ell]}$ if and only if $ v(I \setminus \{0\}) \in \mathscr{D}_\ell $. 
-\label{ideal codimension}
+\begin{lemma}[\parencite[Lemme 5.1.24]{pol2016singularites}]
+For positive integer  $ \ell $ , an ideal  $ I $  of  $ A $  belongs to  $ C^{[\ell]} $  if and only if  $  v(I \setminus \{0\}) \in \mathscr{D}_\ell  $ . \label{ideal codimension}
 \end{lemma}
 
+It follows from Lemma～\ref{ideal codimension} that we have a finite stratification
+ 
 
+$$
 
-It follows from the  Lemma \ref{ideal codimension} that we have a finite stratification
-\[\label{stratification}
 C^{[\ell]} = \bigsqcup_{\Delta \in \mathscr{D}_\ell} C^{[\Delta]}.
-\]
-Each stratum $C^{[\Delta]}$ consists of ideals $I \subset A$ with $v(I \setminus \{0\}) = \Delta$, and the decomposition reflects the combinatorial classification of ideals via their value semimodules.
 
+$$
 
-It is shown in \parencite[Lemma~5]{pfister1992reduced} that each stratum $C^{[\Delta]}$ arises as the intersection of $C^{[\ell]}$ with a Schubert cell in the Grassmannian $\operatorname{Gr}(\delta, \overline{A}/I(2\delta))$. In particular, this implies that $C^{[\Delta]}$ is a open subset of $C^{[\ell]}$, and its geometry is compatible with the cellular decomposition of the ambient Grassmannian.
+ 
+Each stratum  $ C^{[\Delta]} $  consists of ideals  $ I \subset A $  with  $ v(I \setminus \{0\}) = \Delta $ , and the decomposition reflects the combinatorial classification of ideals via their value semimodules.
 
-
-
+It is shown in \parencite[Lemma～5]{pfister1992reduced} that each stratum  $ C^{[\Delta]} $  arises as the intersection of  $ C^{[\ell]} $  with a Schubert cell in the Grassmannian  $ \operatorname{Gr}(\delta, \overline{A}/I(2\delta)) $ . In particular, this implies that  $ C^{[\Delta]} $  is a open subset of  $ C^{[\ell]} $ , and its geometry is compatible with the cellular decomposition of the ambient Grassmannian.
 
 \section{The tree structure of subsemimodules}\label{tree}
+Let  $ \Gamma $  be the value semigroup associated with the germ of an irreducible curve singularity  $ (C,O) $ . The goal of this section is to endow the set of  $ \Gamma $ -subsemimodules with a tree structure. We will show in the next section that this combinatorial object plays a crucial role in understanding the geometry of the punctual Hilbert schemes of  $ C $ . This construction is inspired by the work of Soma and Watari～\cite{soma2014punctual, soma2015punctual}.
 
+For  $ \Delta \in \mathscr{D}_\ell $ , let  $ \gamma_1, \dots, \gamma_n $  be a minimal system of generators of  $ \Delta $  as a  $ \Gamma $ -subsemimodule. Up to reordering, we may assume  $ \gamma_1 < \cdots < \gamma_n $ . We use the notation
+ 
 
+$$
 
-Let $\Gamma$ be the value semigroup associated with the germ of an irreducible curve singularity $(C,O)$. The goal of this section is to endow the set of $\Gamma$-subsemimodules with a tree structure. We will show in the next section that this combinatorial object plays a crucial role in understanding the geometry of the punctual Hilbert schemes of $C$. This construction is inspired by the work of Soma and Watari~\cite{soma2014punctual, soma2015punctual}.\\
-
-
-
-For $\Delta \in \mathscr{D}_\ell$, let $\gamma_1, \dots, \gamma_n$ be a minimal system of generators of $\Delta$ as a $\Gamma$-subsemimodule. Up to reordering, we may assume $\gamma_1 < \cdots < \gamma_n$. We use the notation
-\[
 \Delta = (\gamma_1, \dots, \gamma_n)_{\Gamma} := \bigcup_{i=1}^n (\gamma_i + \Gamma),
-\]
-where the sum denotes the smallest $\Gamma$-subsemimodule containing all $\gamma_i + \Gamma$. By minimality, we have
-\[
-\Delta \supsetneq \bigcup_{\substack{j=1 \\ j \neq i}}^n (\gamma_j + \Gamma) \quad \text{for all } i \in \{1, \dots, n\}.
-\]
 
+$$
+
+ 
+where the sum denotes the smallest  $ \Gamma $ -subsemimodule containing all  $ \gamma_i + \Gamma $ . By minimality, we have
+ 
+
+$$
+
+\Delta \supsetneq \bigcup_{\substack{j=1 \\ j \neq i}}^n (\gamma_j + \Gamma) \quad \text{for all } i \in \{1, \dots, n\}.
+
+$$
+
+ 
 
 The following result appears in \cite{soma2014punctual}:
-
-
 \begin{lemma}\label{lem:del}
-Let $\Delta = (\gamma_1, \dots, \gamma_n)_{\Gamma}  \in \mathscr{D}_\ell$, where $\{\gamma_1, \dots, \gamma_n\}$ is a minimal system of generators. Then for every $i \in \{1, \dots, n\}$, the set
-\[
+Let  $ \Delta = (\gamma_1, \dots, \gamma_n)_{\Gamma} \in \mathscr{D}_\ell $ , where  $ \{\gamma_1, \dots, \gamma_n\} $  is a minimal system of generators. Then for every  $ i \in \{1, \dots, n\} $ , the set
+ 
+
+$$
+
 \Delta \setminus \{\gamma_i\}
-\]
-belongs to $\mathscr{D}_{\ell+1}$.
+
+$$
+
+ 
+\begin{lemma}\label{lem:del}
+Let  $ \Delta = (\gamma_1, \dots, \gamma_n)_{\Gamma} \in \mathscr{D}_\ell $ , where  $ \{\gamma_1, \dots, \gamma_n\} $  is a minimal system of generators. Then for every  $ i \in \{1, \dots, n\} $ , the set
+ 
+
+$$
+
+\Delta \setminus \{\gamma_i\}
+
+$$
+
+ 
+belongs to  $ \mathscr{D}_{\ell+1} $ .
 \end{lemma}
 
-
 \begin{proof}
-We must show that $\Delta \setminus \{\gamma_i\}$ is a $\Gamma$-subsemimodule and that $\#(\Gamma \setminus (\Delta \setminus \{\gamma_i\})) = \ell + 1$.
+We must show that  $ \Delta \setminus \{\gamma_i\} $  is a  $ \Gamma $ -subsemimodule and that  $ \#(\Gamma \setminus (\Delta \setminus \{\gamma_i\})) = \ell + 1 $ .
 
+First, we verify that  $ \Delta \setminus \{\gamma_i\} $  is closed under addition by  $ \Gamma $ . Let  $ x \in \Gamma $  and  $ y \in \Delta \setminus \{\gamma_i\} $ . Since  $ \Delta $  is a  $ \Gamma $ -subsemimodule,  $ x + y \in \Delta $ . Suppose, for contradiction, that  $ x + y = \gamma_i $ . Then  $ x \ne 0 $  (since  $ y \ne \gamma_i $ ), and thus  $ \gamma_i = x + y \in \gamma_j + \Gamma $  for some  $ j \ne i $  (as  $ y \in (\gamma_j + \Gamma) $  for some  $ j \ne i $ ). This implies that  $ \gamma_i $  is in the  $ \Gamma $ -subsemimodule generated by  $ \{\gamma_j \mid j \ne i\} $ , contradicting the minimality of the generating set. Therefore,  $ x + y \ne \gamma_i $ , so  $ x + y \in \Delta \setminus \{\gamma_i\} $ .
 
-First, we verify that $\Delta \setminus \{\gamma_i\}$ is closed under addition by $\Gamma$. Let $x \in \Gamma$ and $y \in \Delta \setminus \{\gamma_i\}$. Since $\Delta$ is a $\Gamma$-subsemimodule, $x + y \in \Delta$. Suppose, for contradiction, that $x + y = \gamma_i$. Then $x \ne 0$ (since $y \ne \gamma_i$), and thus $\gamma_i = x + y \in \gamma_j + \Gamma$ for some $j \ne i$ (as $y \in (\gamma_j + \Gamma)$ for some $j \ne i$). This implies that $\gamma_i$ is in the $\Gamma$-subsemimodule generated by $\{\gamma_j \mid j \ne i\}$, contradicting the minimality of the generating set. Therefore, $x + y \ne \gamma_i$, so $x + y \in \Delta \setminus \{\gamma_i\}$.
+Hence,  $ \Delta \setminus \{\gamma_i\} $  is a  $ \Gamma $ -subsemimodule. Since  $ \Gamma \setminus (\Delta \setminus \{\gamma_i\}) = (\Gamma \setminus \Delta) \cup \{\gamma_i\} $  and  $ \gamma_i \notin \Gamma \setminus \Delta $ , we have
+ 
 
+$$
 
-Hence, $\Delta \setminus \{\gamma_i\}$ is a $\Gamma$-subsemimodule. Since $\Gamma \setminus (\Delta \setminus \{\gamma_i\}) = (\Gamma \setminus \Delta) \cup \{\gamma_i\}$ and $\gamma_i \notin \Gamma \setminus \Delta$, we have
-\[
 \#(\Gamma \setminus (\Delta \setminus \{\gamma_i\})) = \#(\Gamma \setminus \Delta) + 1 = \ell + 1.
-\]
-Thus, $\Delta \setminus \{\gamma_i\} \in \mathscr{D}_{\ell+1}$.
+
+$$
+
+ 
+Thus,  $ \Delta \setminus \{\gamma_i\} \in \mathscr{D}_{\ell+1} $ .
 \end{proof}
 
+For  $ n \in \mathbb{N} $ , define
+ 
 
+$$
 
-
-
-
-
-
-
-
-
-For $n \in \mathbb{N}$, define
-\[
 \mathscr{D}_{\ell,n} := \left\{ \Delta \in \mathscr{D}_\ell \mid \Delta \text{ has exactly } n \text{ minimal generators as a } \Gamma\text{-subsemimodule} \right\}.
-\]
+
+$$
+
+ 
 Note that we have the disjoint decomposition
-\[
+ 
+
+$$
+
 \mathscr{D}_\ell = \bigsqcup_{n \geq 1} \mathscr{D}_{\ell,n}.
-\]
 
+$$
 
+ 
 
+It follows from Lemma～\ref{lem:del} that for each  $ i \in \{1, \dots, n\} $ , there is a canonical \emph{deletion map}
+ 
 
-It follows from Lemma~\ref{lem:del} that for each $i \in \{1, \dots, n\}$, there is a canonical \emph{deletion map}
-\[
+$$
+
 d_{\ell,i} \colon \mathscr{D}_{\ell,n} \to \mathscr{D}_{\ell+1}, \quad \Delta \mapsto \Delta \setminus \{\gamma_i\},
-\]
-where $\gamma_i$ is one of the minimal generators of $\Delta$.
 
+$$
 
-A natural and important question is whether every element of $\mathscr{D}_{\ell+1}$ arises in this way—i.e., can all $\Gamma$-subsemimodules of codimension $\ell+1$ be obtained by removing a minimal generator from some $\Gamma$-subsemimodule of codimension $\ell$? In other words:
-\[
+ 
+where  $ \gamma_i $  is one of the minimal generators of  $ \Delta $ .
+
+A natural and important question is whether every element of  $ \mathscr{D}_{\ell+1} $  arises in this way---i.e., can all  $ \Gamma $ -subsemimodules of codimension  $ \ell+1 $  be obtained by removing a minimal generator from some  $ \Gamma $ -subsemimodule of codimension  $ \ell $ ? In other words:
+ 
+
+$$
+
 \mathscr{D}_{\ell+1} \overset{?}{=} \bigcup_{n \geq 1} \bigcup_{i=1}^n d_{\ell,i}(\mathscr{D}_{\ell,n}).
-\]
-The answer is affirmative, as will follow from Proposition~\ref{prop:surjective}, which shows that the deletion maps are jointly surjective. To prepare for this result, we first establish the following two lemmas.
+
+$$
+
+ 
+The answer is affirmative, as will follow from Proposition～\ref{prop:surjective}, which shows that the deletion maps are jointly surjective. To prepare for this result, we first establish the following two lemmas.
 
 \begin{definition}
-For a  $\Gamma-$subsemimodule $\Delta$. We define the \emph{Frobenius element} of $\Delta$ by
-\[
-\gamma_{\Delta} := \max(\Gamma \setminus \Delta).
-\]
+For a  $ \Gamma $ -subsemimodule  $ \Delta $ , we define the \emph{Frobenius element} of  $ \Delta $  by
+ 
 
+$$
+
+\gamma_{\Delta} := \max(\Gamma \setminus \Delta).
 \end{definition}
 
 \begin{lemma}\label{lem:delta_union}
-Let $\ell \in \mathbb{N}$ and $\Delta \in \mathscr{D}_{\ell+1}$. Then $\Delta \cup \{\gamma_{\Delta}\} \in \mathscr{D}_\ell$.
+Let  $ \ell \in \mathbb{N} $  and  $ \Delta \in \mathscr{D}_{\ell+1} $ . Then  $ \Delta \cup \{\gamma_{\Delta}\} \in \mathscr{D}_\ell $ .
 \end{lemma}
 
-
 \begin{proof}
-We must show that $\Delta \cup \{\gamma_{\Delta}\}$ is a $\Gamma$-subsemimodule and that its complement in $\Gamma$ has cardinality $\ell$.
+We must show that  $ \Delta \cup \{\gamma_{\Delta}\} $  is a  $ \Gamma $ -subsemimodule and that its complement in  $ \Gamma $  has cardinality  $ \ell $ .
 
-
-First, we verify that $\Delta \cup \{\gamma_{\Delta}\}$ is closed under addition by $\Gamma$. Let $x \in \Gamma$ and $y \in \Delta \cup \{\gamma_{\Delta}\}$. We consider two cases:
-
+First, we verify that  $ \Delta \cup \{\gamma_{\Delta}\} $  is closed under addition by  $ \Gamma $ . Let  $ x \in \Gamma $  and  $ y \in \Delta \cup \{\gamma_{\Delta}\} $ . We consider two cases:
 
 \begin{enumerate}
-    \item \textbf{Case $y \in \Delta$:}  
-    Since $\Delta$ is a $\Gamma$-subsemimodule, $x + y \in \Delta \subset \Delta \cup \{\gamma_{\Delta}\}$.
+    \item \textbf{Case  $ y \in \Delta $ :}  
+    Since  $ \Delta $  is a  $ \Gamma $ -subsemimodule,  $ x + y \in \Delta \subseteq \Delta \cup \{\gamma_{\Delta}\} $ .
 
-
-    \item \textbf{Case $y = \gamma_{\Delta}$:}  
-    If $x = 0$, then $x + y = \gamma_{\Delta} \in \Delta \cup \{\gamma_{\Delta}\}$.  
-    If $x > 0$, then $x + \gamma_{\Delta} > \gamma_{\Delta} = \max(\Gamma \setminus \Delta)$. Since $x + \gamma_{\Delta} \in \Gamma$, it cannot lie in $\Gamma \setminus \Delta$, so $x + \gamma_{\Delta} \in \Delta \subset \Delta \cup \{\gamma_{\Delta}\}$.
+    \item \textbf{Case  $ y = \gamma_{\Delta} $ :}  
+    If  $ x = 0 $ , then  $ x + y = \gamma_{\Delta} \in \Delta \cup \{\gamma_{\Delta}\} $ .  
+    If  $ x > 0 $ , then  $ x + \gamma_{\Delta} > \gamma_{\Delta} = \max(\Gamma \setminus \Delta) $ . Since  $ x + \gamma_{\Delta} \in \Gamma $ , it cannot lie in  $ \Gamma \setminus \Delta $ , so  $ x + \gamma_{\Delta} \in \Delta \subset \Delta \cup \{\gamma_{\Delta}\} $ .
 \end{enumerate}
 
+Thus,  $ \Delta \cup \{\gamma_{\Delta}\} $  is a  $ \Gamma $ -subsemimodule. Moreover, since  $ \gamma_{\Delta} \notin \Delta $ , we have
+ 
 
-Thus, $\Delta \cup \{\gamma_{\Delta}\}$ is a $\Gamma$-subsemimodule. Moreover, since $\gamma_{\Delta} \notin \Delta$, we have
-\[
+$$
+
 \#(\Gamma \setminus (\Delta \cup \{\gamma_{\Delta}\})) = \#(\Gamma \setminus \Delta) - 1 = (\ell + 1) - 1 = \ell.
-\]
-Therefore, $\Delta \cup \{\gamma_{\Delta}\} \in \mathscr{D}_\ell$.
+
+$$
+
+ 
+Therefore,  $ \Delta \cup \{\gamma_{\Delta}\} \in \mathscr{D}_\ell $ .
 \end{proof}
-
-
-
 
 \begin{lemma}\label{lem:gamma_generator}
-Let $\Delta \in \mathscr{D}_{\ell+1}$. Then the Frobenius element $\gamma_\Delta = \max(\Gamma \setminus \Delta)$ is part of every minimal generating set of the $\Gamma$-subsemimodule $\Delta \cup \{\gamma_\Delta\}$.
+Let  $ \Delta \in \mathscr{D}_{\ell+1} $ . Then the Frobenius element  $ \gamma_\Delta = \max(\Gamma \setminus \Delta) $  is part of every minimal generating set of the  $ \Gamma $ -subsemimodule  $ \Delta \cup \{\gamma_\Delta\} $ .
 \end{lemma}
 
-
 \begin{proof}
-Suppose, for contradiction, that $\gamma_\Delta$ is not a minimal generator of $\Delta \cup \{\gamma_\Delta\}$. Then it can be written as
-\[
+Suppose, for contradiction, that  $ \gamma_\Delta $  is not a minimal generator of  $ \Delta \cup \{\gamma_\Delta\} $ . Then it can be written as
+ 
+
+$$
+
 \gamma_\Delta = x + y
-\]
-for some $x \in \Delta$ and $y \in \Gamma \setminus \{0\}$. Since $y > 0$, we have $x < \gamma_\Delta$. But $x \in \Delta$, so $x \in \Gamma$, and thus $\gamma_\Delta = x + y \in \Gamma$. Moreover, since $\Delta$ is a $\Gamma$-subsemimodule and $x \in \Delta$, $y \in \Gamma$, we have $\gamma_\Delta = x + y \in \Delta$. This contradicts the fact that $\gamma_\Delta \notin \Delta$.
 
+$$
 
-Therefore, $\gamma_\Delta$ cannot be expressed as a sum of an element in $\Delta$ and a nonzero element of $\Gamma$, so it must belong to every minimal generating set of $\Delta \cup \{\gamma_\Delta\}$.
+ 
+for some  $ x \in \Delta $  and  $ y \in \Gamma \setminus \{0\} $ . Since  $ y > 0 $ , we have  $ x < \gamma_\Delta $ . But  $ x \in \Delta $ , so  $ x \in \Gamma $ , and thus  $ \gamma_\Delta = x + y \in \Gamma $ . Moreover, since  $ \Delta $  is a  $ \Gamma $ -subsemimodule and  $ x \in \Delta $ ,  $ y \in \Gamma $ , we have  $ \gamma_\Delta = x + y \in \Delta $ . This contradicts the fact that  $ \gamma_\Delta \notin \Delta $ .
+
+Therefore,  $ \gamma_\Delta $  cannot be expressed as a sum of an element in  $ \Delta $  and a nonzero element of  $ \Gamma $ , so it must belong to every minimal generating set of  $ \Delta \cup \{\gamma_\Delta\} $ .
 \end{proof}
-
-
-
-
 
 \begin{proposition}\label{prop:surjective}
-The deletion maps cover all of $\mathscr{D}_{\ell+1}$, i.e.,
-\[
+The deletion maps cover all of  $ \mathscr{D}_{\ell+1} $ , i.e.,
+ 
+
+$$
+
 \mathscr{D}_{\ell+1} = \bigcup_{n \geq 1} \bigcup_{i=1}^n d_{\ell,i}(\mathscr{D}_{\ell,n}).
-\]
-In other words, every element of $\mathscr{D}_{\ell+1}$ arises as $\Delta' \setminus \{\gamma_i\}$ for some $\Delta' \in \mathscr{D}_\ell$ and some minimal generator $\gamma_i$ of $\Delta'$.
+
+$$
+
+ 
+In other words, every element of  $ \mathscr{D}_{\ell+1} $  arises as  $ \Delta' \setminus \{\gamma_i\} $  for some  $ \Delta' \in \mathscr{D}_\ell $  and some minimal generator  $ \gamma_i $  of  $ \Delta' $ .
 \end{proposition}
 
-
 \begin{proof}
-Let $\Delta \in \mathscr{D}_{\ell+1}$. By Lemma~\ref{lem:delta_union}, the set $\Delta \cup \{\gamma_\Delta\}$ belongs to $\mathscr{D}_\ell$. By Lemma~\ref{lem:gamma_generator}, $\gamma_\Delta$ is a minimal generator of $\Delta \cup \{\gamma_\Delta\}$.
+Let  $ \Delta \in \mathscr{D}_{\ell+1} $ . By Lemma～\ref{lem:delta_union}, the set  $ \Delta \cup \{\gamma_\Delta\} $  belongs to  $ \mathscr{D}_\ell $ . By Lemma～\ref{lem:gamma_generator},  $ \gamma_\Delta $  is a minimal generator of  $ \Delta \cup \{\gamma_\Delta\} $ .
 
+Let  $ \{\gamma_1, \dots, \gamma_n\} $  be a minimal generating set of  $ \Delta \cup \{\gamma_\Delta\} $ , with  $ \gamma_i = \gamma_\Delta $  for some  $ i $ . Then, by definition of the deletion map  $ d_{\ell,i} $ , we have
+ 
 
-Let $\{\gamma_1, \dots, \gamma_n\}$ be a minimal generating set of $\Delta \cup \{\gamma_\Delta\}$, with $\gamma_i = \gamma_\Delta$ for some $i$. Then, by definition of the deletion map $d_{\ell,i}$, we have
-\[
+$$
+
 d_{\ell,i}(\Delta \cup \{\gamma_\Delta\}) = (\Delta \cup \{\gamma_\Delta\}) \setminus \{\gamma_i\} = (\Delta \cup \{\gamma_\Delta\}) \setminus \{\gamma_\Delta\} = \Delta.
-\]
-Hence, $\Delta$ lies in the image of $d_{\ell,i}$, and the union of the deletion maps is surjective.
+
+$$
+
+ 
+Hence,  $ \Delta $  lies in the image of  $ d_{\ell,i} $ , and the union of the deletion maps is surjective.
 \end{proof}
 
+It follows from Lemma～\ref{lem:delta_union} that we can define a key map for the sequel: for  $ \ell \in \mathbb{N} $  with  $ 1 \leq \ell < c $ , set
+ 
 
+$$
 
-
-
-
-
-
-
-
-
-
-It follows from Lemma~\ref{lem:delta_union} that we can define a key map for the sequel: for $\ell \in \mathbb{N}$ with $1 \leq \ell < c$, set
-\[
 m_{\ell+1} \colon \mathscr{D}_{\ell+1} \to \mathscr{D}_{\ell}, \quad \Delta \mapsto \Delta \cup \{\gamma_{\Delta}\},
-\]
-where $\gamma_{\Delta} = \max(\Gamma \setminus \Delta)$ is the Frobenius element of $\Delta$. This map, which "adds back" the largest gap in $\Gamma \setminus \Delta$, will play a central role in the recursive study of strata in the punctual Hilbert schemes.
 
+$$
 
-The following definition introduces one of the main objects of this article. Recall that $c$ denotes the conductor of the curve singularity $(C,O)$.
+ 
+where  $ \gamma_{\Delta} = \max(\Gamma \setminus \Delta) $  is the Frobenius element of  $ \Delta $ . This map, which "adds back" the largest gap in  $ \Gamma \setminus \Delta $ , will play a central role in the recursive study of strata in the punctual Hilbert schemes.
+
+The following definition introduces one of the main objects of this article. Recall that  $ c $  denotes the conductor of the curve singularity  $ (C,O) $ .
 \begin{definition}\label{def:G_Gamma}
-The \emph{$\Gamma$-subsemimodule graph}, denoted $G_\Gamma = (V, E)$, is the directed, levelled graph defined as follows:
+The \emph{ $ \Gamma $ -subsemimodule graph}, denoted  $ G_\Gamma = (V, E) $ , is the directed, levelled graph defined as follows:
 \begin{itemize}
-    \item \textbf{Vertices:} For each $\ell$ with $1 \leq \ell \leq c$, we denote the set of the vertices at level  $V_\ell:=\mathscr{D}_\ell$, so that
-    \[
+    \item \textbf{Vertices:} For each  $ \ell $  with  $ 1 \leq \ell \leq c $ , we denote the set of the vertices at level   $ V_\ell:=\mathscr{D}_\ell $ , so that
+     
+
+$$
+
     V = \bigsqcup_{\ell=1}^{c} V_\ell.
-    \]
 
+$$
 
-    \item \textbf{Edges:} For $2 \leq \ell \leq c$, there is a directed edge from a vertex corresponding to $\Delta \in \mathscr{D}_\ell$ to a vertex corresponding to $\Delta' \in \mathscr{D}_{\ell-1}$ if and only if
-    \[
+ 
+
+    \item \textbf{Edges:} For  $ 2 \leq \ell \leq c $ , there is a directed edge from a vertex corresponding to  $ \Delta \in \mathscr{D}_\ell $  to a vertex corresponding to  $ \Delta' \in \mathscr{D}_{\ell-1} $  if and only if
+     
+
+$$
+
     m_\ell(\Delta) = \Delta'.
-    \]
-    We denote by $E_\ell$ the set of such edges from level $\ell$ to level $\ell-1$, so that
-    \[
+
+$$
+
+ 
+    We denote by  $ E_\ell $  the set of such edges from level  $ \ell $  to level  $ \ell-1 $ , so that
+     
+
+$$
+
     E = \bigsqcup_{\ell=2}^{c} E_\ell.
-    \]
+
+$$
+
+ 
 \end{itemize}
-We refer to $G_\Gamma$ as the \emph{value tree} or \emph{semimodule tree} associated with the singularity $(C,O)$.
+We refer to  $ G_\Gamma $  as the \emph{value tree} or \emph{semimodule tree} associated with the singularity  $ (C,O) $ .
 \end{definition}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 \begin{theorem}\label{Tree}
-The $\Gamma$-subsemimodule graph $G_{\Gamma}$ admits a canonical tree structure. The set $\mathscr{D}_1$ consists of a single element, $\Gamma \setminus \{0\}$, which we designate as the root of the graph $G_{\Gamma}$.
+The  $ \Gamma $ -subsemimodule graph  $ G_{\Gamma} $  admits a canonical tree structure. The set  $ \mathscr{D}_1 $  consists of a single element,  $ \Gamma \setminus \{0\} $ , which we designate as the root of the graph  $ G_{\Gamma} $ .
 \end{theorem}
 
-
 \begin{proof}
-We establish that $G_{\Gamma}$ is a tree by verifying the two defining properties of a tree in graph theory:
-
+We establish that  $ G_{\Gamma} $  is a tree by verifying the two defining properties of a tree in graph theory:
 
 \begin{enumerate}
-    \item \textbf{Connectedness:} Let $\Delta_1 \in \mathscr{D}_{\ell_1}$ and $\Delta_2 \in \mathscr{D}_{\ell_2}$ be arbitrary vertices in $G_{\Gamma}$. Then there exists a finite sequence of maps
-    \[
+    \item \textbf{Connectedness:} Let  $ \Delta_1 \in \mathscr{D}_{\ell_1} $  and  $ \Delta_2 \in \mathscr{D}_{\ell_2} $  be arbitrary vertices in  $ G_{\Gamma} $ . Then there exists a finite sequence of maps
+     
+
+$$
+
     \Delta_1 \to m_{\ell_1}(\Delta_1) \to \cdots \to \Gamma \setminus \{0\} \leftarrow \cdots \leftarrow m_{\ell_2}(\Delta_2) \leftarrow \Delta_2,
-    \]
-    where each arrow corresponds to an edge in $G_{\Gamma}$, and $\Gamma \setminus \{0\} \in \mathscr{D}_1$ is the root. This shows that any two vertices are connected by a path, so $G_{\Gamma}$ is connected.
 
+$$
 
-    \item \textbf{Acyclicity:} t follows from the uniqueness of Frobenius element of a $\Gamma$-subsemimodule.
+ 
+    where each arrow corresponds to an edge in  $ G_{\Gamma} $ , and  $ \Gamma \setminus \{0\} \in \mathscr{D}_1 $  is the root. This shows that any two vertices are connected by a path, so  $ G_{\Gamma} $  is connected.
 
+    \item \textbf{Acyclicity:} It follows from the uniqueness of Frobenius element of a  $ \Gamma $ -subsemimodule.
 \end{enumerate}
 
-
-Thus, $G_{\Gamma}$ is connected and acyclic, and hence has the structure of a tree, with root $\Gamma \setminus \{0\}$.
+Thus,  $ G_{\Gamma} $  is connected and acyclic, and hence has the structure of a tree, with root  $ \Gamma \setminus \{0\} $ .
 \end{proof}
 
 
 
 
+We can identify the edges 
+ 
 
+$$
 
+E_\ell = \left\{ m_{\ell|_{\Delta}} : \Delta \to m_\ell(\Delta) \mid \Delta \in \mathscr{D}_\ell \right\}_{2\leq \ell \leq c}
 
+$$
 
+ 
+with 
+ 
 
+$$
 
+\left\{ d_{\ell-1,i | m_\ell(\Delta)} : m_\ell(\Delta) \rightarrow \Delta \mid \Delta \in \mathscr{D}_\ell \right\}_{2\leq \ell \leq c}
 
+$$
 
+ 
+or with 
+ 
 
-We can 
-identify the edges $E_\ell = \{m_{\ell|_{\Delta}} : \Delta \to m_\ell(\Delta) \mid \Delta \in \mathscr{D}_\ell\}_{2\leq \ell \leq c}$ to $\{d_{\ell-1,i \mid m_\ell(\Delta)}:    m_\ell(\Delta) \rightarrow \Delta \mid \Delta \in \mathscr{D}_\ell\}_{2\leq \ell \leq c}$ or to $\{d_{\ell,i\mid \Delta}:\Delta\rightarrow d_{\ell,i}(\Delta)\mid m_{\ell+1}d_{\ell,i}(\Delta)=\Delta\}_{1\leq \ell< c}$. \\
+$$
 
+\left\{ d_{\ell,i|\Delta} : \Delta \rightarrow d_{\ell,i}(\Delta) \mid m_{\ell+1}(d_{\ell,i}(\Delta))=\Delta \right\}_{1\leq \ell< c}.
 
+$$
 
+ 
 
+In the sequel, for a fixed parameter  $ \ell $ , we adopt the following simplified notations when there is no ambiguity: set  $ d_i := d_{\ell,i} $  and  $ m := m_\ell $ .
 
-In the sequel, for a fixed parameter $\ell$, we adopt the following simplified notations when there is no ambiguity: set $d_i := d_{\ell,i}$ and $m := m_\ell$. 
+For a  $ \Gamma $ -subsemimodule  $ \Delta $ , we define its \emph{conductor} as
+ 
 
+$$
 
-For a $\Gamma$-subsemimodule $\Delta$, we define its \emph{conductor} as
-\[
-c(\Delta) := \min\left\{ i \in \Delta \mid i + \mathbb{N} \subseteq  \Delta \right\}.
-\]
+c(\Delta) := \min\left\{ i \in \Delta \mid i + \mathbb{N} \subseteq \Delta \right\}.
 
+$$
 
-The tree $G_\Gamma$ has the following properties:
+ 
 
+The tree  $ G_\Gamma $  has the following properties:
 
 \begin{proposition}\label{property_of_tree}
-Let $\Gamma$ be a numerical semigroup. We consider the following construction:
-
-
+Let  $ \Gamma $  be a numerical semigroup. We consider the following construction:
 \begin{enumerate}
-    \item[(i)] Define a sequence of $\Gamma$-subsemimodules $\{\Delta^{(\ell)}\}_{1 \leq \ell \leq c}$ recursively by:
+    \item[(i)] Define a sequence of  $ \Gamma $ -subsemimodules  $ \{\Delta^{(\ell)}\}_{1 \leq \ell \leq c} $  recursively by:
     \begin{itemize}
-        \item $\Delta^{(1)} \coloneqq \Gamma \setminus \{0\}$,
-        \item $\Delta^{(\ell)} \coloneqq d_1(\Delta^{(\ell-1)}) \in \mathscr{D}_\ell$ for $1 < \ell \leq c$.
+        \item  $ \Delta^{(1)} \coloneqq \Gamma \setminus \{0\} $ ,
+        \item  $ \Delta^{(\ell)} \coloneqq d_1(\Delta^{(\ell-1)}) \in \mathscr{D}_\ell $  for  $ 1 < \ell \leq c $ .
     \end{itemize}
-    For each $1 < \ell \leq c$, we have $m \circ d_1(\Delta^{(\ell-1)}) = \Delta^{(\ell-1)}$, so the map 
-     $d_1$  induces an edge 
-    \[
+    For each  $ 1 < \ell \leq c $ , we have  $ m \circ d_1(\Delta^{(\ell-1)}) = \Delta^{(\ell-1)} $ , so the map  $ d_1 $  induces an edge 
+     
+
+$$
+
     \Delta^{(\ell-1)} \to \Delta^{(\ell)}
-    \]
-    in the tree $G_\Gamma$. We refer to $\Delta^{(\ell)}$ as the \emph{level-$\ell$ root vertex} of $G_\Gamma$.
 
+$$
 
-    \item[(ii)] For any $\Gamma$-subsemimodule $\Delta \in \mathscr{D}_\ell$, the following dichotomy holds:
+ 
+    in the tree  $ G_\Gamma $ . We refer to  $ \Delta^{(\ell)} $  as the \emph{level- $ \ell $  root vertex} of  $ G_\Gamma $ .
+
+    \item[(ii)] For any  $ \Gamma $ -subsemimodule  $ \Delta \in \mathscr{D}_\ell $ , the following dichotomy holds:
     \begin{itemize}
-        \item If $\gamma_\Delta < \min(\Delta)$, then $\Delta = \Delta^{(\ell)}$ for some $\ell \geq 1$. In this case, $\Delta$ lies on the root path of the tree.
-        \item If $\gamma_\Delta > \min(\Delta)$, then $m \circ d_1(\Delta) \neq \Delta$, and hence the deletion $d_1(\Delta)$ does not correspond to an edge pointing back to $\Delta$ in $G_\Gamma$. Such $\Delta$ corresponds to a non-root vertex off the main branch.
+        \item If  $ \gamma_\Delta < \min(\Delta) $ , then  $ \Delta = \Delta^{(\ell)} $  for some  $ \ell \geq 1 $ . In this case,  $ \Delta $  lies on the root path of the tree.
+        \item If  $ \gamma_\Delta > \min(\Delta) $ , then  $ m \circ d_1(\Delta) \neq \Delta $ , and hence the deletion  $ d_1(\Delta) $  does not correspond to an edge pointing back to  $ \Delta $  in  $ G_\Gamma $ . Such  $ \Delta $  corresponds to a non-root vertex off the main branch.
     \end{itemize}
 \end{enumerate}
 \end{proposition}
-
-
 
 \begin{proof}
 We prove each part in turn.
 
-
 \medskip
 
+(i) We proceed by induction to show that  $  m_\ell(\Delta^{(\ell)}) = \Delta^{(\ell-1)}  $  for all  $  2 \leq \ell \leq c  $ . 
 
-{(i)} We proceed by induction to show that $ m_\ell(\Delta^{(\ell)}) = \Delta^{(\ell-1)} $ for all $ 2 \leq \ell \leq c $. 
+For the base case  $  \ell = 2  $ , recall that  $  \Delta^{(1)} = \Gamma \setminus \{0\}  $ , so  $  \min(\Delta^{(1)})  $  is the smallest positive element of  $  \Gamma  $ . By construction,  $  \Delta^{(2)} = d_1(\Delta^{(1)}) = \Delta^{(1)} \setminus \{\min(\Delta^{(1)})\}  $ . Thus,
+ 
 
+$$
 
-For the base case $ \ell = 2 $, recall that $ \Delta^{(1)} = \Gamma \setminus \{0\} $, so $ \min(\Delta^{(1)}) $ is the smallest positive element of $ \Gamma $. By construction, $ \Delta^{(2)} = d_1(\Delta^{(1)}) = \Delta^{(1)} \setminus \{\min(\Delta^{(1)})\} $. Thus,
-\[
 \Gamma \setminus \Delta^{(2)} = \{0\} \cup (\Gamma \setminus \Delta^{(1)}) = \{0, \min(\Delta^{(1)})\},
-\]
-and since $ \min(\Delta^{(1)}) > 0 $, we have
-\[
+
+$$
+
+ 
+and since  $  \min(\Delta^{(1)}) > 0  $ , we have
+ 
+
+$$
+
 \gamma_{\Delta^{(2)}} = \max(\Gamma \setminus \Delta^{(2)}) = \min(\Delta^{(1)}).
-\]
+
+$$
+
+ 
 Therefore,
-\[
+ 
+
+$$
+
 m_2(\Delta^{(2)}) = \Delta^{(2)} \cup \{\gamma_{\Delta^{(2)}}\} = \Delta^{(2)} \cup \{\min(\Delta^{(1)})\} = \Delta^{(1)},
-\]
+
+$$
+
+ 
 which establishes the base case.
 
+Now suppose the claim holds for some  $  \ell - 1  $ , i.e.,  $  m_{\ell-1}(\Delta^{(\ell-1)}) = \Delta^{(\ell-2)}  $ . By definition,  $  \Delta^{(\ell)} = d_1(\Delta^{(\ell-1)}) = \Delta^{(\ell-1)} \setminus \{\min(\Delta^{(\ell-1)})\}  $ . Then
+ 
 
-Now suppose the claim holds for some $ \ell - 1 $, i.e., $ m_{\ell-1}(\Delta^{(\ell-1)}) = \Delta^{(\ell-2)} $. By definition, $ \Delta^{(\ell)} = d_1(\Delta^{(\ell-1)}) = \Delta^{(\ell-1)} \setminus \{\min(\Delta^{(\ell-1)})\} $. Then
-\[
+$$
+
 \Gamma \setminus \Delta^{(\ell)} = (\Gamma \setminus \Delta^{(\ell-1)}) \cup \{\min(\Delta^{(\ell-1)})\},
-\]
-and since $ \min(\Delta^{(\ell-1)}) > \max(\Gamma \setminus \Delta^{(\ell-1)}) $ (by the inductive structure), we have
-\[
-\gamma_{\Delta^{(\ell)}} = \max(\Gamma \setminus \Delta^{(\ell)}) = \min(\Delta^{(\ell-1)}).
-\]
-Thus,
-\[
-m_\ell(\Delta^{(\ell)}) = \Delta^{(\ell)} \cup \{\gamma_{\Delta^{(\ell)}}\} = \Delta^{(\ell)} \cup \{\min(\Delta^{(\ell-1)})\} = \Delta^{(\ell-1)},
-\]
-completing the induction.
 
+$$
+
+ 
+and since  $  \min(\Delta^{(\ell-1)}) > \max(\Gamma \setminus \Delta^{(\ell-1)})  $  (by the inductive structure), we have
+ 
+
+$$
+
+\gamma_{\Delta^{(\ell)}} = \max(\Gamma \setminus \Delta^{(\ell)}) = \min(\Delta^{(\ell-1)}).
+
+$$
+
+ 
+Thus,
+ 
+
+$$
+
+m_\ell(\Delta^{(\ell)}) = \Delta^{(\ell)} \cup \{\gamma_{\Delta^{(\ell)}}\} = \Delta^{(\ell)} \cup \{\min(\Delta^{(\ell-1)})\} = \Delta^{(\ell-1)},
+
+$$
+
+ 
+completing the induction.
 
 \medskip
 
+(ii) Suppose  $  \gamma_\Delta < \min(\Delta)  $ . Then  $  \min(m(\Delta)) = \min(\Delta \cup \{\gamma_\Delta\}) = \gamma_\Delta  $ , since  $  \gamma_\Delta \notin \Delta  $  and  $  \gamma_\Delta < \min(\Delta)  $ . In particular,  $  \gamma_\Delta  $  is strictly smaller than all elements of  $  \Delta  $ , so it becomes the minimal element of  $  m(\Delta)  $ . Therefore,
+ 
 
-{(ii)} Suppose $ \gamma_\Delta < \min(\Delta) $. Then $ \min(m(\Delta)) = \min(\Delta \cup \{\gamma_\Delta\}) = \gamma_\Delta $, since $ \gamma_\Delta \notin \Delta $ and $ \gamma_\Delta < \min(\Delta) $. In particular, $ \gamma_\Delta $ is strictly smaller than all elements of $ \Delta $, so it becomes the minimal element of $ m(\Delta) $. Therefore,
-\[
+$$
+
 d_1(m(\Delta)) = m(\Delta) \setminus \{\min(m(\Delta))\} = (\Delta \cup \{\gamma_\Delta\}) \setminus \{\gamma_\Delta\} = \Delta,
-\]
-which shows that $ \Delta $ lies on the image of the $ d_1 $-path starting from $ \Delta^{(1)} $.
 
+$$
 
-Moreover, since $ c(m(\Delta)) \leq \gamma_\Delta < c(\Delta) $, the conductor strictly decreases along this process. Hence, repeated application of $ m $ eventually yields a subsemimodule $ m^k(\Delta) $ such that $ \gamma_{m^k(\Delta)} < \min(m^k(\Delta)) $ and $ c(m^k(\Delta)) $ is minimal. This process terminates at $ \Delta^{(1)} = \Gamma \setminus \{0\} $, so $ \Delta = \Delta^{(\ell)} $ for some $ \ell $.
+ 
+which shows that  $  \Delta  $  lies on the image of the  $  d_1  $ -path starting from  $  \Delta^{(1)}  $ .
 
+Moreover, since  $  c(m(\Delta)) \leq \gamma_\Delta < c(\Delta)  $ , the conductor strictly decreases along this process. Hence, repeated application of  $  m  $  eventually yields a subsemimodule  $  m^k(\Delta)  $  such that  $  \gamma_{m^k(\Delta)} < \min(m^k(\Delta))  $  and  $  c(m^k(\Delta))  $  is minimal. This process terminates at  $  \Delta^{(1)} = \Gamma \setminus \{0\}  $ , so  $  \Delta = \Delta^{(\ell)}  $  for some  $  \ell  $ .
 
-Conversely, if $ \gamma_\Delta > \min(\Delta) $, then $ \min(m(\Delta)) = \min(\Delta) $, and $ \gamma_\Delta $ is not the smallest element of $ m(\Delta) $. Therefore, $ d_1(m(\Delta)) $ removes $ \min(\Delta) $, not $ \gamma_\Delta $, so
-\[
+Conversely, if  $  \gamma_\Delta > \min(\Delta)  $ , then  $  \min(m(\Delta)) = \min(\Delta)  $ , and  $  \gamma_\Delta  $  is not the smallest element of  $  m(\Delta)  $ . Therefore,  $  d_1(m(\Delta))  $  removes  $  \min(\Delta)  $ , not  $  \gamma_\Delta  $ , so
+ 
+
+$$
+
 d_1(m(\Delta)) \neq \Delta,
-\]
-and thus the edge $ \Delta \to m(\Delta) $ is not reversible via $ d_1 $. This means $ \Delta $ does not lie on the main $ d_1 $-branch of the tree.
+
+$$
+
+ 
+and thus the edge  $  \Delta \to m(\Delta)  $  is not reversible via  $  d_1  $ . This means  $  \Delta  $  does not lie on the main  $  d_1  $ -branch of the tree.
 \end{proof}
 
-
 \begin{example}\label{ex:34}
-Let $A = k[[t^3, t^4]]$, the local ring of the plane curve singularity defined by $y^3 - x^4 = 0$. The associated value semigroup is
-\[
-\Gamma = \langle 3,4 \rangle = \{0, 3, 4, 6, 7, 8, 9, \dots\},
-\]
-which contains all integers $n \geq 6$ except 5. 
-
-
-
-
-Consider the subsemimodule $\Delta = (3,4) = \Gamma \setminus \{0\} \in \mathscr{D}_1$, which is the root of the tree $G_\Gamma$. Applying the deletion maps $d_{1,i}$ corresponding to each minimal generator, we obtain:
-\begin{itemize}
-    \item $d_{1,1}((3,4)_{\Gamma} ) = (3,4)_{\Gamma}  \setminus \{3\} = \{4,6,7,8,9,\dots\} = (4,6)_{\Gamma}  \in \mathscr{D}_2$,
-    \item $d_{1,2}((3,4)_{\Gamma} ) = (3,4)_{\Gamma}  \setminus \{4\} = \{3,6,7,8,9,\dots\} = (3,8)_{\Gamma}  \in \mathscr{D}_2$.
-    \item $d_{2,1}((4,6)_{\Gamma} ) = (4,6)_{\Gamma}  \setminus \{4\} = \{6,7,8,9,\dots\} = (6,7,8)_{\Gamma}  \in \mathscr{D}_3. $
-\end{itemize}
-Note that both $(4,6)$ and $(3,8)$ are distinct elements in $\mathscr{D}_2$, corresponding to two different branches from the root.
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}[level distance=0.1cm,
-   level 1/.style={sibling distance=5cm, level distance=1.5cm},
-   level 2/.style={sibling distance=6cm, level distance=2cm},
-    level 3/.style={sibling distance=3cm, level distance=2cm},
-    level 4/.style={sibling distance=2.3cm, level distance=2cm},
-    level 5/.style={sibling distance=2cm, level distance=2cm},
-   grow'=up]
+Let  $ A = k[[t^3, t^4]] $ , the local ring of the plane curve singularity defined by  $ y^3 - x^4 = 0 $ . The associated value semigroup is
  
-\node {$(3,4)_{\Gamma} $} 
-   child {node {$(4,6)_{\Gamma} $} 
-    child {node {$(6,7,8)_{\Gamma} $}  
-        child {node {$(7,8,9)_{\Gamma} $}
-            child {node {$(8,9,10)_{\Gamma} $}
-                child{node {$(9,10,11)_{\Gamma} $}edge from parent node[left]{$d_{1}$}}
-                    child {node {$(8,10)_{\Gamma} $}edge from parent node[right]{$d_{2}$}}
-                        child {node {$(8,9)_{\Gamma} $}edge from parent node[right]{$d_{3}$}}
-                        edge from parent node[left]{$d_{1}$}}
-                            child {node {$(7,9)_{\Gamma} $}
-                            child [missing]{}
-                            child [missing]{}
-                                child {node {$(7,12)_{\Gamma} $}edge from parent node[right]{$d_{2}$}}
-                                edge from parent node[right]{$d_{2}$}}
-                                    child {node {$(7,8)_{\Gamma} $}edge from parent node[right]{$d_{3}$}}
-                                    edge from parent node[left]{$d_{1}$}}  
-                                        child {node {$(6,8)_{\Gamma} $}
-                                            child[missing]{}
-                                                child[missing]{}
-                                                    child {node {$(6,11)_{\Gamma} $}
-                                                    child {node {$(6)_{\Gamma} $}edge from parent node[right]{$d_{2}$}}edge from parent node[right]{$d_{2}$}}
-                                                    edge from parent node[right]{$d_{2}$}}   
-                                                        child {node {$(6,7)_{\Gamma} $}edge from parent node[right]{$d_{3}$}}edge from parent node[left]{$d_{1}$}}
-                                                            child {node {$(4,9)_{\Gamma} $ }
-                                                                child {node {$(4)_{\Gamma} $}edge from parent node[right]{$d_{2}$}}edge from parent node[right]{$d_{2}$}}
-                                                                    edge from parent node[left]{$d_{1}$}}
-                                                                        child {node {$(3,8)_{\Gamma} $} 
-                                                                            child {node {$(3)_{\Gamma} $}
-                                                                            edge from parent node[right]{$d_{2}$}}edge from parent node[right]{$d_{2}$}
-};
 
-\end{tikzpicture}
-    \caption{Tree for the case of  $E_{6}$ type singularity}
-    \label{fig:enter-label}
-\end{figure}\\
+$$
+
+\Gamma = \langle 3,4 \rangle = \{0, 3, 4, 6, 7, 8, 9, \dots\},
+
+$$
+
+ 
+which contains all integers  $ n \geq 6 $  except 5. 
+
+Consider the subsemimodule  $ \Delta = (3,4) = \Gamma \setminus \{0\} \in \mathscr{D}_1 $ , which is the root of the tree  $ G_\Gamma $ . Applying the deletion maps  $ d_{1,i} $  corresponding to each minimal generator, we obtain:
+\begin{itemize}
+    \item  $ d_{1,1}((3,4)_{\Gamma} ) = (3,4)_{\Gamma}  \setminus \{3\} = \{4,6,7,8,9,\dots\} = (4,6)_{\Gamma}  \in \mathscr{D}_2 $ ,
+    \item  $ d_{1,2}((3,4)_{\Gamma} ) = (3,4)_{\Gamma}  \setminus \{4\} = \{3,6,7,8,9,\dots\} = (3,8)_{\Gamma}  \in \mathscr{D}_2 $ .
+    \item  $ d_{2,1}((4,6)_{\Gamma} ) = (4,6)_{\Gamma}  \setminus \{4\} = \{6,7,8,9,\dots\} = (6,7,8)_{\Gamma}  \in \mathscr{D}_3 $ .
+\end{itemize}
+Note that both  $ (4,6) $  and  $ (3,8) $  are distinct elements in  $ \mathscr{D}_2 $ , corresponding to two different branches from the root.
 \end{example}
-
-
-
-
-
-In this chapter, we recall the definition of punctual Hilbert schemes on a unibranch curve singularity and some useful information about them. Let $(C,O)$ be the germ of a unibranch curve singularity defined over a field $k$, and let $A := \\mathcal\{O\}_\{C,O\}$ be its local ring. The ring $A$ is a complete local ring and its normalization $\\bar\{A\}$ is a discrete valuation ring isomorphic to $k[[t]]$. Let $v: \\bar\{A\} \\rightarrow \\mathbf\{N\} \\cup \\\{\\infty\\\}$ be the corresponding discrete valuation, which associates to a power series in $k[[t]]$ its order in $t$, with $v(0) = \\infty$.\
-\
-The semigroup of $A$ (and of $(C,O)$) is defined as $\\Gamma := v(A \\setminus \\\{0\\\})$. For $n \\in \\mathbf\{N\}$, we consider the ideal \
-\\[\
-\\bar\{I\}(n) := \\\{f \\in \\bar\{A\} \\mid v(f) \\geq n\\\}\
-\\]\
-of $\\bar\{A\}$ and the ideal $I(n) := \\bar\{I\}(n) \\cap A$. Define the conductor $c$ of $C$ by \
-\\[\
-c := \\min\\\{n \\mid \\bar\{I\}(n) \\subset A\\\}.\
-\\]\
-Denote $\\mathfrak\{c\} := I(c)$ as the conductor ideal of $A$, and note that $c = \\dim_k(\\bar\{A\}/\\mathfrak\{c\})$. We define the $\\delta$-invariant of $C$ by $\\delta := \\dim_k(\\bar\{A\}/A) = \\#(\\mathbf\{N\} \\setminus \\Gamma)$. We have $\\delta + 1 \\leq c \\leq 2\\delta$, and $c = 2\\delta$ if and only if $A$ is Gorenstein \\cite\{serre1959groupes\}.\
-\
-Let $I$ be a nonzero ideal of $A$. We denote:\
-\\begin\{align*\}\
-\\tau(I) &= l(A/I) := l_A(A/I) = \\dim_k A/I, \\\\\
-t(I) &= \\min\\\{v(f) \\mid f \\in I\\\}, \\\\\
-\\Gamma(I) &= v(I \\setminus \\\{0\\\}), \\\\\
-\\Gamma_0(I) &= \\Gamma(I) - t(I) = \\\{v(t^\{-t(I)\}f) \\mid f \\in I \\setminus \\\{0\\\}\\\}, \\\\\
-\\delta(I) &= \\#(\\mathbf\{N\} \\setminus \\Gamma_0(I)).\
-\\end\{align*\}\
-For $I = A$, we get $0$, $0$, $\\Gamma$, and $\\delta$ respectively. We let $[a,b] := \\\{x \\in \\mathbf\{N\} \\mid a \\leq x \\leq b\\\}$ and $[a,\\infty) := \\\{x \\in \\mathbf\{N\} \\mid x \\geq a\\\}$. Let $c(I)$ be the conductor of $\\Gamma_0(I)$, i.e., $c(I) = \\min\\\{n \\in \\mathbf\{N\} \\mid [n,\\infty) \\subset \\Gamma_0(I)\\\}$.\
-\
-\\begin\{lemma\}[\\cite\{pfister1992reduced\}, Section 2]\\label\{relation for ideal\}\
-We have the following relations:\
-\\begin\{enumerate\}\
-\\item[(i)] $\\tau(I) = t(I) + \\delta(I) - \\delta$,\
-\\item[(ii)] $c(I) \\leq \\delta + \\delta(I)$.\
-\\end\{enumerate\}\
-\\begin\{proof\}\
-For (i): Let $f \\in I$ with $v(f) = t(I)$. Then\
-\\[\
-\\tau(I) + \\delta = l(A/I) + l(\\bar\{A\}/A) = l(\\bar\{A\}/I) = l(f^\{-1\}\\bar\{A\}/f^\{-1\}I) = l(f^\{-1\}\\bar\{A\}/\\bar\{A\}) + l(\\bar\{A\}/f^\{-1\}I) = t(I) + \\delta(I),\
-\\]\
-where $f^\{-1\}\\bar\{A\} = \\\{\\frac\{x\}\{f\} \\in \\operatorname\{Frac\}(\\bar\{A\}) \\mid x \\in \\bar\{A\}\\\}$ and\
-\\[\
-l_A(f^\{-1\}\\bar\{A\}/\\bar\{A\}) = \\#(v(f^\{-1\}\\bar\{A\}) \\setminus v(\\bar\{A\})) = \\#\\\{v(f^\{-1\}), \\dots, -1\\\} = t(I).\
-\\]\
-\
-For (ii): Note that $\\Gamma_0(I)$ is a $\\Gamma$-module, so $\\gamma \\in \\Gamma$ implies that $c(I) - 1 - \\gamma \\notin \\Gamma_0(I)$. If $\\gamma \\in \\Gamma$ with $\\gamma < c(I)$, then $c(I) - 1 - \\gamma \\in \\mathbf\{N\}$. Hence $\\\{\\gamma \\in \\Gamma \\mid \\gamma < c(I)\\\} \\hookrightarrow \\\{\\mathbf\{N\} \\setminus \\Gamma_0(I)\\\}$ and\
-\\[\
-\\#\\\{\\gamma \\in \\Gamma \\mid \\gamma < c(I)\\\} \\leq \\#\\\{\\mathbf\{N\} \\setminus \\Gamma_0(I)\\\} = \\delta(I).\
-\\]\
-Since $\\#\\\{\\gamma \\in \\Gamma \\mid \\gamma < c(I)\\\} + \\delta = \\#\\\{\\Gamma \\cap [0, c(I))\\\} + \\#(\\mathbf\{N\} \\setminus \\Gamma) = \\#[0, c(I)) = c(I)$, we have $c(I) \\leq \\delta + \\delta(I)$.\
-\\end\{proof\}\
-\\end\{lemma\}\
-\
-\\begin\{definition\}\\label\{def of punctual hilbert scheme\}\
-For $\\ell \\in \\mathbf\{Z\}_\{>0\}$, the punctual Hilbert schemes of $(C,O)$ are defined as \
-\\[\
-C^\{[\\ell]\} := \\\{I \\mid I \\text\{ is an ideal of $A$ with colength $\\ell$\}\\\}.\
-\\]\
-\\end\{definition\}\
-\
-Pfister and Steenbrink \\cite\{pfister1992reduced\} showed that the punctual Hilbert schemes can be embedded in a closed subvariety of a Grassmannian. More precisely, let $\\mathscr\{M\}$ be the subvariety of the Grassmannian $\\operatorname\{Gr\}(\\delta, A/I(2\\delta))$ which is the reduced structure of the variety defined by\
-\\[\
-\\mathscr\{M\} := \\\{W \\in \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta)) \\mid W \\text\{ is an $A$-submodule of \} \\bar\{A\}/I(2\\delta)\\\}.\
-\\]\
-One can see that $\\mathscr\{M\}$ is a subvariety of $\\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))$:\
-\
-Note that $1 + \\mathfrak\{m\}_A$ is the group of units in $A$. Consider the action of $1 + \\mathfrak\{m\}_A$ by multiplication on $\\bar\{A\}/I(2\\delta)$: $x \\cdot \\bar\{a\} := \\overline\{xa\}$, which is well-defined and linear. This action also acts on $\\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))$: $x \\cdot W = \\\{x \\cdot \\bar\{a\} \\mid \\bar\{a\} \\in W\\\}$. We claim that the fixed points of this action are exactly the points of $\\mathscr\{M\}$, i.e.,\
-\\[\
-\\mathscr\{M\} = \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))^\{1 + \\mathfrak\{m\}_A\}.\
-\\]\
-Indeed, by definition, we have $\\mathscr\{M\} \\subseteq \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))^\{1 + \\mathfrak\{m\}_A\}$. Let $W \\in \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))^\{1 + \\mathfrak\{m\}_A\}$, $x \\in \\mathfrak\{m\}_A$, and $w \\in W$. Then\
-\\[\
-x \\cdot w = (x - 1) \\cdot w + w \\in W.\
-\\]\
-Hence, for any $x \\in A$, we have $x \\cdot W = W$, which implies $\\mathscr\{M\} \\supseteq \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))^\{1 + \\mathfrak\{m\}_A\}$.\
-\
-By the Pl\'fccker embedding,\
-\\[\
-\\begin\{aligned\}\
-i: \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta)) &\\hookrightarrow \\mathbb\{P\}(\\bigwedge^\{\\delta\} \\bar\{A\}/I(2\\delta)) \\cong \\mathbb\{P\}^\{\\binom\{n\}\{k\}-1\} \\\\\
-W = \\operatorname\{Span\}_k\\\{v_1, \\dots, v_\\delta\\\} &\\mapsto \\nu = [v_1 \\wedge \\dots \\wedge v_\\delta] \\mapsto [\\pi_\{i_1, \\dots, i_\\delta\}],\
-\\end\{aligned\}\
-\\]\
-and by Lemma \\ref\{plucker minors\}, $\\pi_\{i_1, \\dots, i_\\delta\}$ (with $i_1 < \\dots < i_\\delta$) are the $\\delta \\times \\delta$ minors of the submatrix formed by the $i_1$-th, $i_2$-th, $\\ldots$, and the $i_\\delta$-th rows of a matrix $M \\in M_\{2\\delta, \\delta\}(k)$ representing $W = \\operatorname\{Span\}_k\\\{v_1, \\dots, v_\\delta\\\}$ in the standard basis $\\\{e_1, \\dots, e_\{2\\delta\}\\\}$ of $\\bar\{A\}/I(2\\delta)$.\
-\
-We consider the group $1 + \\mathfrak\{m\}_A$ acting on $\\bigwedge^\{\\delta\} \\bar\{A\}/I(2\\delta)$ by unipotent linear transformations. Let $V := \\left(\\bigwedge^\{\\delta\} \\bar\{A\}/I(2\\delta)\\right)^\{1 + \\mathfrak\{m\}_A\}$ be the fixed point subspace of $\\bigwedge^\{\\delta\} \\bar\{A\}/I(2\\delta)$ under the action of $1 + \\mathfrak\{m\}_A$. Then we have\
-\\[\
-\\mathscr\{M\} = \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta)) \\cap \\mathbb\{P\}(V) = i^\{-1\}(\\mathbb\{P\}(V)).\
-\\]\
-Note that $\\mathbb\{P\}(V)$ is closed in $\\mathbb\{P\}(\\bigwedge^\{\\delta\} \\bar\{A\}/I(2\\delta))$, so $\\mathscr\{M\} = i^\{-1\}(\\mathbb\{P\}(V))$ is closed in $\\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))$. Hence, $\\mathscr\{M\}$ is a projective scheme.\
-\
-\\begin\{lemma\}[\\cite\{pfister1992reduced\}, Section 2]\\label\{relation of ideal with colength tau\}\
-\\begin\{enumerate\}\
-\\item[(i)] Each $I \\in C^\{[\\tau]\}$ satisfies\
-\\[\
-I(\\tau + 2\\delta) \\subseteq I \\subseteq I(\\tau).\
-\\]\
-Furthermore,\
-\\[\
-I(2\\delta) \\subseteq t^\{-\\tau\}I \\subseteq \\bar\{A\}.\
-\\]\
-\\item[(ii)] For $I \\in C^\{[\\tau]\}$, $\\dim_k(t^\{-\\tau\}I/I(2\\delta)) = \\delta$.\
-\\end\{enumerate\}\
-\\begin\{proof\}\
-For (i): To show $I \\subseteq I(\\tau) = \\bar\{I\}(\\tau) \\cap A$, it suffices to show $t(I) \\geq \\tau(I)$. Note that $\\Gamma \\subseteq \\Gamma_0(I) = \\Gamma(I) - t(I)$, because for each $a \\in A$, choosing a uniformizing parameter $t$ in $\\bar\{A\}$, we have $v(t^\{t(I)\}a) \\in \\Gamma(I)$ and $v(a) \\in \\Gamma_0(I)$. By Lemma \\ref\{relation for ideal\}(i),\
-\\[\
-t(I) - \\tau(I) = \\delta - \\delta(I) = \\#\\\{\\mathbf\{N\} \\setminus \\Gamma\\\} - \\#\\\{\\mathbf\{N\} \\setminus \\Gamma_0(I)\\\} \\geq 0.\
-\\]\
-\
-On the other hand, since $c \\leq 2\\delta$, we have $I(\\tau + 2\\delta) = \\bar\{I\}(\\tau + 2\\delta)$. Therefore, to prove $I(\\tau + 2\\delta) \\subseteq I$, it suffices to prove\
-\\[\
-c(I) + t(I) \\leq \\tau + 2\\delta.\
-\\]\
-By Lemma \\ref\{relation for ideal\},\
-\\[\
-c(I) + t(I) \\leq \\delta + \\delta(I) + t(I) = \\delta + (\\tau(I) - t(I) + \\delta) + t(I) = \\tau + 2\\delta.\
-\\]\
-Furthermore, we have $t^\{-\\tau\}I(\\tau + 2\\delta) = I(2\\delta)$ and $t^\{-\\tau\}I(\\tau) \\subseteq \\bar\{A\}$, which implies $I(2\\delta) \\subseteq t^\{-\\tau\}I \\subseteq \\bar\{A\}$.\
-\
-For (ii): Consider the exact sequence\
-\\[\
-0 \\rightarrow A/I \\rightarrow \\bar\{A\}/I \\rightarrow \\bar\{A\}/A \\rightarrow 0.\
-\\]\
-We have $l(\\bar\{A\}/t^\{-\\tau\}I) = l(\\bar\{A\}/I) - \\tau(I) = l(\\bar\{A\}/I) - l(A/I) = \\delta$. Now consider the exact sequence\
-\\[\
-0 \\rightarrow t^\{-\\tau\}I/I(2\\delta) \\rightarrow \\bar\{A\}/I(2\\delta) \\rightarrow \\bar\{A\}/t^\{-\\tau\}I \\rightarrow 0.\
-\\]\
-Hence,\
-\\[\
-\\dim_k(t^\{-\\tau\}I/I(2\\delta)) = 2\\delta - \\delta = \\delta.\
-\\]\
-\\end\{proof\}\
-\\end\{lemma\}\
-\
-\\begin\{lemma\}\
-For any $I \\in C^\{[\\tau]\}$, we have $I \\supset (\\mathfrak\{m\}_A)^\{\\tau + 2\\delta\}$. Furthermore, $\\sqrt\{I\} = \\mathfrak\{m\}_A$.\
-\\begin\{proof\}\
-Since $I(\\tau + 2\\delta) \\subseteq I$, we have\
-\\[\
-I(\\tau + 2\\delta) = (\\mathfrak\{m\}_\{\\bar\{A\}\})^\{\\tau + 2\\delta\} \\cap A \\supset (\\mathfrak\{m\}_\{\\bar\{A\}\} \\cap A)^\{\\tau + 2\\delta\} = (\\mathfrak\{m\}_A)^\{\\tau + 2\\delta\}.\
-\\]\
-\\end\{proof\}\
-\\end\{lemma\}\
-\
-Define the map\
-\\[\
-\\phi_\\tau: C^\{[\\tau]\} \\rightarrow \\mathscr\{M\}, \\quad I \\mapsto t^\{-\\tau\}I/I(2\\delta).\
-\\]\
-\
-\\begin\{proposition\}[\\cite\{pfister1992reduced\}, Theorem 3]\
-For $\\tau \\in \\mathbf\{Z\}_\{>0\}$, there exists a closed embedding $\\phi_\\tau: C^\{[\\tau]\} \\rightarrow \\mathscr\{M\}$, and the map is bijective when $\\tau \\geq c$.\
-\\begin\{proof\}\
-By definition, the map is injective. Let $x \\in \\mathscr\{M\}$ correspond to the $A$-submodule $J$ of $\\bar\{A\}$, i.e., assume $x = J/I(2\\delta)$ and $J$ is an $A$-submodule of $\\bar\{A\}$. Then $l(\\bar\{A\}) - l(J) = \\delta$:\
-\\[\
-l(\\bar\{A\}) - l(J) = l(\\bar\{A\}) - l(I(2\\delta)) + l(I(2\\delta)) - l(J) = 2\\delta - \\delta = \\delta.\
-\\]\
-Hence, $t^\\tau J$ is an $A$-submodule of $\\bar\{A\}$ of colength $\\tau + \\delta$:\
-\\[\
-l(\\bar\{A\}/t^\\tau J) = l(t^\{-\\tau\}\\bar\{A\}/J) = l(t^\{-\\tau\}\\bar\{A\}/\\bar\{A\}) + l(\\bar\{A\}/J) = \\tau + \\delta.\
-\\]\
-We claim that $x \\in \\operatorname\{Im\}(\\phi_\\tau)$ if and only if $t^\\tau J \\subseteq A$. Indeed, if $t^\\tau J \\subseteq A$, then $t^\\tau J$ is an ideal of $A$, and\
-\\[\
-l(A/t^\\tau J) = l(A) - l(\\bar\{A\}) + l(\\bar\{A\}) - l(t^\\tau J) = -\\delta + (\\tau + \\delta) = \\tau.\
-\\]\
-Then $x = J/I(2\\delta) = t^\{-\\tau\}(t^\\tau J)/I(2\\delta) = \\phi_\\tau(t^\\tau J)$. Conversely, if $x \\in \\operatorname\{Im\}(\\phi_\\tau)$, then for each $a \\in J$, there exists an ideal $I$ in $A$ with colength $\\tau$ and $b \\in I$ such that $a - t^\{-\\tau\}b \\in I(2\\delta)$, i.e., $t^\\tau a - b \\in t^\\tau I(2\\delta)$, so $t^\\tau a \\in A$. This completes the proof of the claim.\
-\
-For $\\tau \\geq c$, let $J$ be as above. Then $t^\\tau J \\subset A$, which implies that $\\phi_\\tau$ is surjective. Hence $\\phi_\\tau$ is bijective. In general, the condition $t^\\tau J \\subset A$ defines a Zariski-closed subset of $\\mathscr\{M\}$.\
-\\end\{proof\}\
-\\end\{proposition\}\
-\
-\\begin\{example\}\
-Consider the normalization:\
-\\[\
-A = k[[t^2, t^3]] \\hookrightarrow \\bar\{A\} = k[[t]].\
-\\]\
-Then $\\Gamma = v(A \\setminus \\\{0\\\}) = \\\{2, 3, 4, \\dots\\\}$, $\\delta = \\#(\\mathbf\{N\} \\setminus \\Gamma) = \\#\\\{1\\\} = 1$.\
-\
-\\[\
-\\begin\{aligned\}\
-\\mathscr\{M\} &= \\\{W \\in \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta)) \\mid x \\cdot W = W \\text\{ for any \} x \\in 1 + \\mathfrak\{m\}_A\\\} \\\\\
-&= \\\{W \\in \\operatorname\{Gr\}(1, \\operatorname\{Span\}_k\\\{\\bar\{1\}, \\bar\{t\}\\\}) \\mid x \\cdot W = W \\text\{ for any \} x \\in 1 + \\mathfrak\{m\}_A\\\}.\
-\\end\{aligned\}\
-\\]\
-\
-Fix a standard basis $\\\{\\bar\{1\}, \\bar\{t\}\\\}$ in $\\bar\{A\}/I(2)$. Any $W = \\operatorname\{Span\}_k\\\{a_0\\bar\{1\} + a_1\\bar\{t\}\\\} \\in \\mathscr\{M\}$ can be associated to the $1 \\times 2$ matrix $(a_0, a_1) \\neq 0$.\
-\
-Consider the Pl\'fccker embedding:\
-\\[\
-\\mathscr\{M\} \\hookrightarrow \\mathbb\{P\}(\\bigwedge^1 \\bar\{A\}/I(2)) \\cong \\mathbb\{P\}^1, \\quad W \\mapsto [w] \\mapsto [a_0 : a_1].\
-\\]\
-\
-Note that $\\mathfrak\{m\}_A = \\operatorname\{Span\}_k\\\{t^2, t^3, \\dots\\\}$, so elements in $1 + \\mathfrak\{m\}_A$ are of the form $x = (1 + \\alpha_1 t^2 + \\alpha_2 t^3 + \\dots)$. One checks that the action is trivial for any $x \\in 1 + \\mathfrak\{m\}_A$, so $\\mathscr\{M\} = \\mathbb\{P\}^1$.\
-\
-Let $W \\in C^\{[1]\}$, i.e., $W = J/I(2)$ with $J = \\operatorname\{Span\}_k\\\{a_0 + a_1 t + \\dots\\\}$, $(a_0, a_1) \\neq 0$, and $tJ \\subset A$. This implies $a_0 = 0$ and $a_1 \\neq 0$. Then $C^\{[1]\} = \\\{\\text\{point\}\\\}$.\
-\\end\{example\}\
-\
-\\begin\{example\}\
-Consider the normalization:\
-\\[\
-A = k[[t^2, t^5]] \\hookrightarrow \\bar\{A\} = k[[t]].\
-\\]\
-Then $\\Gamma = v(A \\setminus \\\{0\\\}) = \\\{2, 4, 5, \\dots\\\}$, $\\delta = \\#(\\mathbf\{N\} \\setminus \\Gamma) = \\#\\\{1, 3\\\} = 2$.\
-\
-\\[\
-\\begin\{aligned\}\
-\\mathscr\{M\} &= \\\{W \\in \\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta)) \\mid x \\cdot W = W \\text\{ for any \} x \\in 1 + \\mathfrak\{m\}_A\\\} \\\\\
-&= \\\{W \\in \\operatorname\{Gr\}(2, \\operatorname\{Span\}_k\\\{\\bar\{1\}, \\bar\{t\}, \\bar\{t^2\}, \\bar\{t^3\}\\\}) \\mid x \\cdot W = W \\text\{ for any \} x \\in 1 + \\mathfrak\{m\}_A\\\}.\
-\\end\{aligned\}\
-\\]\
-\
-Fix a standard basis $\\\{\\bar\{1\}, \\bar\{t\}, \\bar\{t^2\}, \\bar\{t^3\}\\\}$ in $\\bar\{A\}/I(4)$. Any $W = \\operatorname\{Span\}_k\\\{w_1, w_2\\\} = \\operatorname\{Span\}_k\\\{a_\{11\}\\bar\{1\} + a_\{21\}\\bar\{t\} + a_\{31\}\\bar\{t^2\} + a_\{41\}\\bar\{t^3\}, a_\{12\}\\bar\{1\} + a_\{22\}\\bar\{t\} + a_\{32\}\\bar\{t^2\} + a_\{42\}\\bar\{t^3\}\\\} \\in \\mathscr\{M\}$ can be associated to the $4 \\times 2$ matrix\
-\\[\
-\\begin\{pmatrix\}\
-a_\{11\} & a_\{12\} \\\\\
-a_\{21\} & a_\{22\} \\\\\
-a_\{31\} & a_\{32\} \\\\\
-a_\{41\} & a_\{42\}\
-\\end\{pmatrix\}.\
-\\]\
-\
-Consider the Pl\'fccker embedding:\
-\\[\
-\\mathscr\{M\} \\hookrightarrow \\mathbb\{P\}(\\bigwedge^2 \\bar\{A\}/I(4)) \\cong \\mathbb\{P\}^5, \\quad W \\mapsto [w_1 \\wedge w_2] \\mapsto [\\pi_\{12\} : \\pi_\{13\} : \\pi_\{14\} : \\pi_\{23\} : \\pi_\{24\} : \\pi_\{34\}],\
-\\]\
-where $\\pi_\{ij\}$ is the minor of columns 1,2 and rows $i,j$. By Theorem \\ref\{Plucker relation\}, it satisfies the Pl\'fccker relation $\\pi_\{12\}\\pi_\{34\} - \\pi_\{13\}\\pi_\{24\} + \\pi_\{14\}\\pi_\{23\} = 0$.\
-\
-Note that $\\mathfrak\{m\}_A = \\operatorname\{Span\}_k\\\{t^2, t^4, t^5, \\dots\\\}$, so elements in $1 + \\mathfrak\{m\}_A$ are of the form $x_\\alpha = (1 + \\alpha t^2 + \\beta t^4 + \\dots)$. Then $x_\\alpha \\cdot W$ is associated to the matrix:\
-\\[\
-\\begin\{pmatrix\}\
-a_\{11\} & a_\{12\} \\\\\
-a_\{21\} & a_\{22\} \\\\\
-a_\{31\} + \\alpha a_\{11\} & a_\{32\} + \\alpha a_\{12\} \\\\\
-a_\{41\} + \\alpha a_\{21\} & a_\{42\} + \\alpha a_\{22\}\
-\\end\{pmatrix\}.\
-\\]\
-\
-Thus,\
-\\[\
-x_\\alpha \\cdot W \\mapsto [\\pi_\{12\} : \\pi_\{13\} : \\alpha \\pi_\{12\} + \\pi_\{14\} : -\\alpha \\pi_\{12\} + \\pi_\{23\} : \\pi_\{24\} : \\alpha^2 \\pi_\{12\} + \\alpha(\\pi_\{14\} - \\pi_\{23\}) + \\pi_\{34\}] \\in \\mathbb\{P\}^5.\
-\\]\
-Then $x_\\alpha \\cdot W = W$ for any $x_\\alpha \\in 1 + \\mathfrak\{m\}_A$ implies that $\\pi_\{12\} = \\pi_\{14\} - \\pi_\{23\} = 0$.\
-\
-Hence, $\\mathscr\{M\}$ is a projective quadratic cone in $\\mathbb\{P\}^3 = \\operatorname\{Proj\} k[\\pi_\{13\}, \\pi_\{14\}, \\pi_\{24\}, \\pi_\{34\}]$ defined by\
-\\[\
-\\pi_\{13\} \\pi_\{24\} = \\pi_\{14\}^2.\
-\\]\
-\
-Let $W = J/I(4) \\in C^\{[1]\}$ with $J = \\operatorname\{Span\}_k\\\{a_\{11\}\\bar\{1\} + a_\{21\}\\bar\{t\} + a_\{31\}\\bar\{t^2\} + a_\{41\}\\bar\{t^3\} + \\dots, a_\{12\}\\bar\{1\} + a_\{22\}\\bar\{t\} + a_\{32\}\\bar\{t^2\} + a_\{42\}\\bar\{t^3\} + \\dots\\\}$ and $tJ \\subset A$. This implies $a_\{11\} = a_\{12\} = a_\{31\} = a_\{32\} = 0$ and $[\\pi_\{13\} : \\pi_\{14\} : \\pi_\{24\} : \\pi_\{34\}] = [0 : 0 : \\pi_\{24\} : 0]$. Then $C^\{[1]\} \\cong \\\{\\text\{point\}\\\}$.\
-\
-Let $W = J/I(4) \\in C^\{[2]\}$. Then $t^2 J \\subset A$ implies $a_\{21\} = a_\{22\} = 0$ and $\\pi_\{14\} = \\pi_\{23\} = \\pi_\{24\} = 0$. Hence, $[\\pi_\{13\} : \\pi_\{14\} : \\pi_\{24\} : \\pi_\{34\}] = [\\pi_\{13\} : 0 : 0 : \\pi_\{34\}]$. Then $C^\{[2]\} \\cong \\mathbb\{P\}^1$.\
-\
-Let $W = J/I(4) \\in C^\{[3]\}$. Then $t^3 J \\subset A$ implies $a_\{11\} = a_\{12\} = 0$ and $\\pi_\{14\} = \\pi_\{23\} = \\pi_\{13\} = 0$. Hence, $[\\pi_\{13\} : \\pi_\{14\} : \\pi_\{24\} : \\pi_\{34\}] = [0 : 0 : \\pi_\{24\} : \\pi_\{34\}]$. Then $C^\{[3]\} \\cong \\mathbb\{P\}^1$.\
-\\end\{example\}\
-\
-Since $c \\leq 2\\delta$, we only need to understand the punctual Hilbert scheme $C^\{[\\ell]\}$ in the Grothendieck ring for $\\ell$ varying in a finite set. A useful way to study motivic invariants is to stratify the Hilbert scheme $C^\{[\\ell]\}$ into constructible subsets, making use of the valuation $v$ and the semigroup $\\Gamma$ of $C$, as follows:\
-\
-A subset $\\Delta \\subset \\mathbf\{N\}$ is called a $\\Gamma$-subsemimodule if $\\Delta + \\Gamma \\subseteq \\Delta$ (in particular, we have $\\Delta \\subset \\Gamma$ since $1 \\in A$ and $v(1) = 0$). Note that given an ideal $I \\subset A$, the axioms of ideals ensure that $\\Gamma(I) := v(I \\setminus \\\{0\\\})$ is a subsemimodule of $\\Gamma$. For $\\Delta$ a $\\Gamma$-subsemimodule, we define:\
-\\[\
-C^\{[\\Delta]\} := \\\{I \\mid I \\text\{ is an ideal of $A$ with \} \\Gamma(I) = \\Delta\\\}.\
-\\]\
-\
-\\begin\{lemma\}[\\cite\{oblomkov2012hilbert\}, Corollary 23; \\cite\{pol2016singularites\}, Lemme 5.1.24] \\label\{ideal codimension\}\
-For a positive integer $\\ell$, an ideal $I$ of $A$ belongs to $C^\{[\\ell]\}$ if and only if $\\#(\\Gamma \\setminus \\Gamma(I)) = \\ell$.\
-\\begin\{proof\}\
-Since $\\dim_k A/I$ is finite,\
-\\[\
-\\dim_k A/I = \\sum_n \\dim_k I_n / (I_n \\cap I + I_\{n+1\}).\
-\\]\
-This contributes 1 exactly when there is a ring element with valuation $n$, but no ideal element with valuation $n$; i.e., for $n \\in \\Gamma \\setminus v(I \\setminus \\\{0\\\})$.\
-\\end\{proof\}\
-\\end\{lemma\}\
-\
-Consider the set\
-\\[\
-\\mathscr\{D\}_\\ell := \\\{\\Delta \\subset \\Gamma \\mid \\Delta \\text\{ is a $\\Gamma$-semimodule with \} \\#(\\Gamma \\setminus \\Delta) = \\ell\\\}.\
-\\]\
-It follows from the above lemma that we have the stratification\
-\\begin\{equation\}\\label\{stratification\}\
-C^\{[\\ell]\} = \\bigsqcup_\{\\Delta \\in \\mathscr\{D\}_\\ell\} C^\{[\\Delta]\}.\
-\\end\{equation\}\
-\
-In the following, according to \\cite[Lemma 5]\{pfister1992reduced\}, we will show that the set $C^\{[\\Delta]\}$ is the intersection of $C^\{[\\ell]\}$ with a Schubert cell of the Grassmannian $\\operatorname\{Gr\}(\\delta, A/I(2\\delta))$. In particular, the set $C^\{[\\Delta]\}$ is a locally closed subset of $C^\{[\\ell]\}$.\
-\
-Note that $\\bar\{A\}/I(2\\delta)$ has the canonically defined flag\
-\\[\
-0 \\subset V_1 \\subset \\dots \\subset V_\{2\\delta\} = \\bar\{A\}/I(2\\delta),\
-\\]\
-where $V_i := \\bar\{I\}(2\\delta - i)/I(2\\delta)$, $\\dim_k(V_i) = \\#\\\{v(f) \\mid f \\in \\bar\{I\}(2\\delta - i) \\setminus I(2\\delta)\\\} = \\#\\\{2\\delta - i, \\dots, 2\\delta - 1\\\} = i$. By Chapter \\ref\{Grassmann and Schubert\}, this induces a partition of $\\operatorname\{Gr\}(\\delta, \\bar\{A\}/I(2\\delta))$ into Schubert cells\
-\\[\
-W_\{a_1, \\dots, a_\\delta\} \\quad \\text\{for \} \\delta \\geq a_1 \\geq \\dots \\geq a_\\delta \\geq 0,\
-\\]\
-defined by\
-\\[\
-\\begin\{aligned\}\
-W_\{a_1, \\ldots, a_\\delta\} =\
-\\left\\\{\\Lambda \\in \\operatorname\{Grass\}(\\delta, \\bar\{A\} / I(2 \\delta)) \\mid \\dim(\\Lambda \\cap V_\{\\delta + t - a_t\}) = t \\text\{ for \} t = 1, \\ldots, \\delta \\right. \\\\\
-\\text\{and \} \\left. \\dim(\\Lambda \\cap V_j) < t \\text\{ for \} j < \\delta + t - a_t \\right\\\},\
-\\end\{aligned\}\
-\\]\
-and\
-\\[\
-X_\{a_1, \\ldots, a_\\delta\} = \\overline\{W_\{a_1, \\ldots, a_\\delta\}\} = \\\{\\Lambda \\in \\operatorname\{Grass\}(\\delta, \\bar\{A\} / I(2 \\delta)) \\mid \\dim(\\Lambda \\cap V_\{\\delta + t - a_t\}) \\geq t, \\text\{ for \} t = 1, \\dots, \\delta \\\}.\
-\\]\
-The Krull dimension is\
-\\[\
-\\dim_\{\\text\{Krull\}\} W_\{a_1, \\ldots, a_\\delta\} = \\sum_\{t=1\}^\{\\delta\} (i_t - t) = \\sum_\{t=1\}^\{\\delta\} (\\delta - a_t) = \\delta^2 - \\sum_\{t=1\}^\{\\delta\} a_t,\
-\\]\
-where $i_t := \\delta + t - a_t$, $1 \\leq i_1 < \\dots < i_\\delta \\leq 2\\delta$, for $t = 1, \\ldots, \\delta$. Let $\\underline\{i\} := (i_1, \\dots, i_\\delta) \\in I_\{\\delta, 2\\delta\}$.\
-\
-Let $\\Delta$ be a subset of $[0, 2\\delta - 1]$ such that $\\#\\Delta = \\delta$ and $\\Delta \\cup [2\\delta, \\infty)$ is a $\\Gamma$-module. Let $\\Gamma_1(I) = \\Gamma(I) - \\tau(I)$. Define\
-\\[\
-\\begin\{aligned\}\
-\\mathscr\{M\}(\\Delta) &:= \\\{I \\text\{ is an ideal of \} A \\mid \\Gamma_1(I) \\cap [0, 2\\delta - 1] = \\Delta\\\} \\\\\
-&= \\\{t^\{-\\tau(I)\}I/I(2\\delta) \\in \\mathscr\{M\} \\mid \\Gamma_1(I) = \\Delta \\cup [2\\delta, \\infty)\\\}.\
-\\end\{aligned\}\
-\\]\
-\
-\\begin\{lemma\}[\\cite\{pfister1992reduced\}, Lemma 5]\
-Let $\\Delta = \\\{b_1, \\dots, b_\\delta\\\}$ with $0 \\leq b_1 < \\dots < b_\\delta < 2\\delta$. Let $a_\{\\delta - i + 1\} = b_i - i + 1$ for $i = 1, \\dots, \\delta$. Then $\\mathscr\{M\}(\\Delta) = \\mathscr\{M\} \\cap W_\{a_1, \\dots, a_\\delta\}$. Therefore, $\\\{\\mathscr\{M\}(\\Delta)\\\}_\\Delta$ is a  covering of $\\mathscr\{M\}$.\
-\\begin\{proof\}\
-For $i = 1, \\dots, \\delta$, let $j = \\delta - i + 1$, so $1 \\leq j \\leq \\delta$ and $a_j = b_\{\\delta - j + 1\} - \\delta + j$ with $\\delta \\geq a_1 \\geq \\dots \\geq a_\\delta \\geq 0$.\
-\
-For $t^\{-\\tau(I)\}I/I(2\\delta) \\in \\mathscr\{M\}(\\Delta)$ and $1 \\leq j \\leq \\delta$, we have $V_\{\\delta + j - a_j\} = \\bar\{I\}(b_\{\\delta - j + 1\})/I(2\\delta)$ and\
-\\[\
-\\dim_k t^\{-\\tau(I)\}I/I(2\\delta) \\cap V_\{\\delta + j - a_j\} = \\dim_k [t^\{-\\tau(I)\}I \\cap \\bar\{I\}(b_\{\\delta - j + 1\})]/I(2\\delta) = \\#\\\{b_\{\\delta - j + 1\}, \\dots, b_\\delta\\\} = j.\
-\\]\
-For $k < \\delta + j - a_j = 2\\delta - b_\{\\delta - j + 1\}$, we have $V_k \\subsetneq V_\{\\delta + j - a_j\} = \\bar\{I\}(b_\{\\delta - j + 1\})/I(2\\delta)$ and\
-\\[\
-\\dim_k t^\{-\\tau(I)\}I/I(2\\delta) \\cap V_k < \\dim_k t^\{-\\tau(I)\}I/I(2\\delta) \\cap V_\{\\delta + j - a_j\} = j.\
-\\]\
-Hence $t^\{-\\tau(I)\}I/I(2\\delta) \\in W_\{a_1, \\dots, a_\\delta\}$ and $\\mathscr\{M\}(\\Delta) \\subseteq \\mathscr\{M\} \\cap W_\{a_1, \\dots, a_\\delta\}$. Similarly, we can show $\\mathscr\{M\} \\cap W_\{a_1, \\dots, a_\\delta\} \\subseteq \\mathscr\{M\}(\\Delta)$.\
-\\end\{proof\}\
-\\end\{lemma\}\
-\
-\\begin\{remark\}\
-Let $\\Delta = \\\{b_1, \\dots, b_\\delta\\\}$ with $0 \\leq b_1 < \\dots < b_\\delta < 2\\delta$. Let $a_\{\\delta - i + 1\} = b_i - i + 1$ for $i = 1, \\dots, \\delta$. If $\\Delta \\cup [2\\delta, \\infty)$ is not a $\\Gamma$-module, then $\\mathscr\{M\} \\cap W_\{a_1, \\dots, a_\\delta\} = \\varnothing$.\
-\\end\{remark\}\
-\
-For $\\tau \\geq 1$, denote\
-\\[\
-D_\\tau := \\\{\\Delta \\subset [0, 2\\delta - 1] \\mid \\#\\Delta = \\delta, \\Delta \\cup [2\\delta, \\infty) \\subset [0, \\infty) \\cap (\\Gamma - \\tau) \\text\{ is a $\\Gamma$-semimodule\}\\\}.\
-\\]\
-For $\\Delta \\in D_\\tau$,\
-\\[\
-\\begin\{aligned\}\
-\\mathscr\{M\}_\\tau(\\Delta) &:= C^\{[\\tau]\} \\cap \\mathscr\{M\}(\\Delta) \\\\\
-&= \\\{I \\in C^\{[\\tau]\} \\mid \\Gamma_1(I) \\cap [0, 2\\delta - 1] = \\Delta\\\} \\\\\
-&= \\\{t^\{-\\tau\}I/I(2\\delta) \\in \\mathscr\{M\} \\mid \\Gamma_1(I) = \\Delta \\cup [2\\delta, \\infty)\\\}.\
-\\end\{aligned\}\
-\\]\
-\
-\\begin\{lemma\}\\label\{schubert cell in C tau\}\
-\\[\
-C^\{[\\tau]\} = \\bigsqcup_\{\\Delta \\in D_\\tau\} \\mathscr\{M\}_\\tau(\\Delta).\
-\\]\
-\\begin\{proof\}\
-For $I \\in C^\{[\\tau]\}$, we have $I \\subseteq I(\\tau) = \\bar\{I\}(\\tau) \\cap A$, so $t^\{-\\tau\}I \\subseteq t^\{-\\tau\}(I(\\tau)) = t^\{-\\tau\}\\bar\{I\}(\\tau) \\cap t^\{-\\tau\}A$. Then\
-\\[\
-\\Gamma_1(I) \\subseteq (v(\\bar\{I\}(\\tau)) - \\tau) \\cap (\\Gamma - \\tau) = [0, \\infty) \\cap (\\Gamma - \\tau),\
-\\]\
-and $I \\in \\mathscr\{M\}(\\Delta)$, where $\\Delta = \\Gamma_1(I) \\cap [0, 2\\delta - 1] \\in D_\\tau$.\
-\\end\{proof\}\
-\\end\{lemma\}\
-\
-We introduce the following proposition to show that for $\\Delta \\in \\mathscr\{D\}_\\tau$, the set $C^\{[\\Delta]\}$ is the intersection of $C^\{[\\ell]\}$ with a Schubert cell of the Grassmannian $\\operatorname\{Gr\}(\\delta, A/I(2\\delta))$.\
-\
-\\begin\{proposition\}\
-Denote $\\mathscr\{D\}_\\tau' := \\\{\\Delta \\in \\mathscr\{D\}_\\tau \\mid C^\{[\\Delta]\} \\neq \\varnothing\\\}$, $D_\\tau' := \\\{\\Delta_0 \\in D_\\tau \\mid \\mathscr\{M\}_\\tau(\\Delta_0) \\neq \\varnothing\\\}$. Then we have inverse maps\
-\\[\
-\\begin\{aligned\}\
-\\varphi_\\tau: \\mathscr\{D\}'_\\tau &\\rightarrow D'_\\tau \\\\\
-\\Delta &\\mapsto (\\Delta - \\tau) \\cap [0, 2\\delta - 1],\
-\\end\{aligned\}\
-\\quad\
-\\begin\{aligned\}\
-\\phi_\\tau: D_\\tau' &\\rightarrow \\mathscr\{D\}'_\\tau \\\\\
-\\Delta_0 &\\mapsto (\\Delta_0 + \\tau) \\cup [2\\delta + \\tau, \\infty).\
-\\end\{aligned\}\
-\\]\
-Furthermore, for $\\Delta \\in \\mathscr\{D\}_\\tau'$, $C^\{[\\Delta]\} = \\mathscr\{M\}_\\tau(\\varphi_\\tau(\\Delta))$, and for $\\Delta_0 \\in D_\\tau$, $\\mathscr\{M\}_\\tau(\\Delta_0) = C^\{[\\phi_\\tau(\\Delta_0)]\}$.\
-\\begin\{proof\}\
-The map $\\varphi_\\tau$ is well-defined: for $\\Delta \\in \\mathscr\{D\}_\\tau$, there exists $I$ such that $\\Gamma(I) = v(I \\setminus \\\{0\\\}) = \\Delta$ and $\\Gamma_1(I) = \\Delta - \\tau$. Since $\\dim_k t^\{-\\tau\}I/I(2\\delta) = \\delta$, we have $\\#((\\Delta - \\tau) \\cap [0, 2\\delta - 1]) = \\delta$. Note that $((\\Delta - \\tau) \\cap [0, 2\\delta - 1]) \\cup [2\\delta, \\infty) = \\Gamma_1(I)$, which is a $\\Gamma$-module. By the proof of Lemma \\ref\{schubert cell in C tau\}, we have $\\Gamma_1(I) \\subseteq [0, \\infty) \\cap (\\Gamma - \\tau)$.\
-\
-The map $\\phi_\\tau$ is well-defined: for $\\Delta_0 \\in D_\\tau$, there exists $I \\in C^\{[\\tau]\}$ with $\\Delta_0' = \\Gamma_1(I) \\cap [0, 2\\delta - 1]$. By Lemma \\ref\{relation of ideal with colength tau\}, we have $\\min(\\Gamma(I)) \\geq \\tau$ and $[2\\delta + \\tau, \\infty) \\subseteq \\Gamma(I)$, so\
-\\[\
-(\\Delta_0 + \\tau) \\cup [2\\delta + \\tau, \\infty) = (\\Gamma(I) \\cap [\\tau, 2\\delta - 1]) \\cup [2\\delta + \\tau, \\infty) = \\Gamma(I).\
-\\]\
-Their invertibility is obvious.\
-\\end\{proof\}\
-\\end\{proposition\}\
-\
-In the rest of this chapter, we recall some concepts and properties of monomial semigroups as introduced in \\cite\{pfister1992reduced\}.\
-\
-\\begin\{definition\}[\\cite\{pfister1992reduced\}, Definition 8]\
-A monomial curve singularity over $\\mathbf\{C\}$ is an irreducible curve singularity with local ring isomorphic to $A = \\mathbf\{C\}[[t^\{a_1\}, \\dots, t^\{a_m\}]]$ with $\\gcd(a_1, \\dots, a_m) = 1$.\
-\\end\{definition\}\
-\
-\\begin\{definition\}[\\cite\{pfister1992reduced\}, Definition 9]\
-A semigroup $\\Gamma \\subset \\mathbf\{N\}$ is called monomial if $0 \\in \\Gamma$, $\\#(\\mathbf\{N\} \\setminus \\Gamma) < \\infty$, and each reduced and irreducible curve singularity with semigroup $\\Gamma$ is a monomial curve singularity.\
-\\end\{definition\}\
-\
-\\begin\{proposition\}[\\cite\{pfister1992reduced\}, Theorem 10]\\label\{monomial semigroup\}\
-For a semigroup $\\Gamma \\subset \\mathbf\{N\}$, the following are equivalent:\
-\\begin\{enumerate\}\
-\\item $\\Gamma$ is a monomial semigroup.\
-\\item $\\Gamma$ is of one of the following forms:\
-\\begin\{enumerate\}\
-\\item $\\Gamma_\{m,s,b\} := \\\{im \\mid i = 0, 1, \\dots, s\\\} \\cup [sm + b, \\infty)$ with $1 \\leq b < m$, $s \\geq 1$,\
-\\item $\\Gamma_\{m,r\} := \\\{0\\\} \\cup [m, m + r - 1] \\cup [m + r + 1, \\infty)$ with $2 \\leq r \\leq m - 1$,\
-\\item $\\Gamma_m := \\\{0, m\\\} \\cup [m + 2, 2m] \\cup [2m + 2, \\infty)$ with $m \\geq 3$.\
-\\end\{enumerate\}\
-\\item $0 \\in \\Gamma$, $\\#(\\mathbf\{N\} \\setminus \\Gamma) < \\infty$, and the following holds: if $x \\in \\mathbf\{N\} \\setminus \\Gamma$ and $c(x) := \\min\\\{n \\in \\mathbf\{N\} \\mid [n, \\infty) \\subset \\Gamma \\cup (x + \\Gamma)\\\}$, then $\\Gamma \\cap (x + \\Gamma) \\subseteq [c(x), \\infty)$.\
-\\end\{enumerate\}\
-\\end\{proposition\}\
-\
-The following lemma is implicit in the proof of Theorem 11 in \\cite\{pfister1992reduced\}.\
-\
-\\begin\{lemma\}\\label\{c(x)+y\}\\cite\{hajli2025geometry\}\
-For $y \\in \\mathbf\{Z\}$ and $x \\in \\mathbf\{N\} \\setminus \\Gamma$, then $c(x) + y = \\min \\\{m \\in \\mathbf\{N\} \\mid [m, \\infty) \\subseteq (\\Gamma + y) \\cup (x + y + \\Gamma)\\\}$.\
-\\begin\{proof\}\
-By definition, we have $[c(x) + y, \\infty) \\subseteq (\\Gamma \\cup (x + \\Gamma)) + y = (\\Gamma + y) \\cup (x + y + \\Gamma)$. If there exists $c_0 < c(x) + y$ such that $[c_0, \\infty) \\subseteq (\\Gamma + y) \\cup (x + y + \\Gamma)$, then $[c_0 - y, \\infty) \\subseteq \\Gamma \\cup (x + \\Gamma)$, which contradicts the minimality of $c(x)$.\
-\\end\{proof\}\
-\\end\{lemma\}\
-\
-\\begin\{corollary\}\\label\{syz large that c in monomial semigroup\}\\cite\{hajli2025geometry\}\
- Let $\\Delta$ be a $\\Gamma$-subsemimodule. Suppose $\\gamma_\{1\}$ and $\\gamma_\{2\}$ are two generators of $\\Delta$ with $\\gamma_\{1\}>\\gamma_\{2\}$. Then, for any element in the syzygy $\\sigma\\in Syz((\\gamma_\{1\},\\gamma_\{2\})_\{\\Gamma\})$ (See Defintion \\ref\{syzygy and aug syzygy\}),  we have $\\sigma\\geq c(\\Delta)$. \
-\\begin\{proof\}\
-Since $x=\\gamma_\{1\}-\\gamma_\{2\}\\notin \\Gamma$,  we have \
-\\[Syz(\\left \\langle\\gamma_\{1\},\\gamma_\{2\}\\right\\rangle)=(\\Gamma+\\gamma_\{1\})\\cap (\\Gamma+\\gamma_\{2\})= (\\Gamma\\cap (\\Gamma+x))+\\gamma_\{2\} \\subseteq [c(x),\\infty)+\\gamma_\{2\}=[c(x)+\\gamma_\{2\},\\infty).\\]\
-\
-\
-Applying  lemma \\ref\{c(x)+y\}, we get:  $c(x)+\\gamma_\{2\} = c((\\gamma_\{1\},\\gamma_\{2\})_\{\\Gamma\})$. Thus, for any  $\\sigma\\in Syz((\\gamma_\{1\},\\gamma_\{2\})_\{\\Gamma\})$,  we conclude that: $\\sigma \\geq  c((\\gamma_\{1\},\\gamma_\{2\})_\{\\Gamma\})\\geq c(\\Delta)$. \
-\\end\{proof\}\
-\\end\{corollary\}\
-\
-\\chapter\{The tree structure of subsemimodules\}\\label\{tree\}\
-\
-\
-Let $\\Gamma$ be the value semigroup associated with the germ of an irreducible curve singularity $(C,O)$. The goal of this chapter is to endow the set of $\\Gamma$-subsemimodules with a tree structure. We will show in the next chapter that this combinatorial object plays a crucial role in understanding the geometry of the punctual Hilbert schemes of $C$. This construction is inspired by the work of Soma and Watari~\\cite\{soma2014punctual, soma2015punctual\}.\\\\\
-\
-\
-\
-For $\\Delta \\in \\mathscr\{D\}_\\ell$, let $\\gamma_1, \\dots, \\gamma_n$ be a minimal system of generators of $\\Delta$ as a $\\Gamma$-subsemimodule. Up to reordering, we may assume $\\gamma_1 < \\cdots < \\gamma_n$. We use the notation\
-\\[\
-\\Delta = (\\gamma_1, \\dots, \\gamma_n)_\{\\Gamma\} := \\bigcup_\{i=1\}^n (\\gamma_i + \\Gamma),\
-\\]\
-where the sum denotes the smallest $\\Gamma$-subsemimodule containing all $\\gamma_i + \\Gamma$. By minimality, we have\
-\\[\
-\\Delta \\supsetneq \\bigcup_\{\\substack\{j=1 \\\\ j \\neq i\}\}^n (\\gamma_j + \\Gamma) \\quad \\text\{for all \} i \\in \\\{1, \\dots, n\\\}.\
-\\]\
-\
-\
-The following result appears in \\cite\{soma2014punctual\}:\
-\
-\
-\\begin\{lemma\}\\label\{lem:del\}\
-Let $\\Delta = (\\gamma_1, \\dots, \\gamma_n)_\{\\Gamma\}  \\in \\mathscr\{D\}_\\ell$, where $\\\{\\gamma_1, \\dots, \\gamma_n\\\}$ is a minimal system of generators. Then for every $i \\in \\\{1, \\dots, n\\\}$, the set\
-\\[\
-\\Delta \\setminus \\\{\\gamma_i\\\}\
-\\]\
-belongs to $\\mathscr\{D\}_\{\\ell+1\}$.\
-\\end\{lemma\}\
-\
-\
-\\begin\{proof\}\
-We must show that $\\Delta \\setminus \\\{\\gamma_i\\\}$ is a $\\Gamma$-subsemimodule and that $\\#(\\Gamma \\setminus (\\Delta \\setminus \\\{\\gamma_i\\\})) = \\ell + 1$.\
-\
-\
-First, we verify that $\\Delta \\setminus \\\{\\gamma_i\\\}$ is closed under addition by $\\Gamma$. Let $x \\in \\Gamma$ and $y \\in \\Delta \\setminus \\\{\\gamma_i\\\}$. Since $\\Delta$ is a $\\Gamma$-subsemimodule, $x + y \\in \\Delta$. Suppose, for contradiction, that $x + y = \\gamma_i$. Then $x \\ne 0$ (since $y \\ne \\gamma_i$), and thus $\\gamma_i = x + y \\in \\gamma_j + \\Gamma$ for some $j \\ne i$ (as $y \\in (\\gamma_j + \\Gamma)$ for some $j \\ne i$). This implies that $\\gamma_i$ is in the $\\Gamma$-subsemimodule generated by $\\\{\\gamma_j \\mid j \\ne i\\\}$, contradicting the minimality of the generating set. Therefore, $x + y \\ne \\gamma_i$, so $x + y \\in \\Delta \\setminus \\\{\\gamma_i\\\}$.\
-\
-\
-Hence, $\\Delta \\setminus \\\{\\gamma_i\\\}$ is a $\\Gamma$-subsemimodule. Since $\\Gamma \\setminus (\\Delta \\setminus \\\{\\gamma_i\\\}) = (\\Gamma \\setminus \\Delta) \\cup \\\{\\gamma_i\\\}$ and $\\gamma_i \\notin \\Gamma \\setminus \\Delta$, we have\
-\\[\
-\\#(\\Gamma \\setminus (\\Delta \\setminus \\\{\\gamma_i\\\})) = \\#(\\Gamma \\setminus \\Delta) + 1 = \\ell + 1.\
-\\]\
-Thus, $\\Delta \\setminus \\\{\\gamma_i\\\} \\in \\mathscr\{D\}_\{\\ell+1\}$.\
-\\end\{proof\}\
-\
-
-For $n \\in \\mathbb\{N\}$, define\
-\\[\
-\\mathscr\{D\}_\{\\ell,n\} := \\left\\\{ \\Delta \\in \\mathscr\{D\}_\\ell \\mid \\Delta \\text\{ has exactly \} n \\text\{ minimal generators as a \} \\Gamma\\text\{-subsemimodule\} \\right\\\}.\
-\\]\
-Note that we have the disjoint decomposition\
-\\[\
-\\mathscr\{D\}_\\ell = \\bigsqcup_\{n \\geq 1\} \\mathscr\{D\}_\{\\ell,n\}.\
-\\]\
-\
-\
-\
-\
-It follows from Lemma~\\ref\{lem:del\} that for each $i \\in \\\{1, \\dots, n\\\}$, there is a canonical \\emph\{deletion map\}\
-\\[\
-d_\{\\ell,i\} \\colon \\mathscr\{D\}_\{\\ell,n\} \\to \\mathscr\{D\}_\{\\ell+1\}, \\quad \\Delta \\mapsto \\Delta \\setminus \\\{\\gamma_i\\\},\
-\\]\
-where $\\gamma_i$ is one of the minimal generators of $\\Delta$.\
-\
-\
-A natural and important question is whether every element of $\\mathscr\{D\}_\{\\ell+1\}$ arises in this way\'97i.e., can all $\\Gamma$-subsemimodules of codimension $\\ell+1$ be obtained by removing a minimal generator from some $\\Gamma$-subsemimodule of codimension $\\ell$? In other words:\
-\\[\
-\\mathscr\{D\}_\{\\ell+1\} \\overset\{?\}\{=\} \\bigcup_\{n \\geq 1\} \\bigcup_\{i=1\}^n d_\{\\ell,i\}(\\mathscr\{D\}_\{\\ell,n\}).\
-\\]\
-The answer is affirmative, as will follow from Proposition~\\ref\{prop:surjective\}, which shows that the deletion maps are jointly surjective. To prepare for this result, we first establish the following two lemmas.\
-\
-\\begin\{definition\}\
-For a  $\\Gamma-$subsemimodule $\\Delta$. We define the \\emph\{Frobenius element\} of $\\Delta$ by\
-\\[\
-\\gamma_\{\\Delta\} := \\max(\\Gamma \\setminus \\Delta).\
-\\]\
-\
-\\end\{definition\}\
-\
-\\begin\{lemma\}\\label\{lem:delta_union\}\
-Let $\\ell \\in \\mathbb\{N\}$ and $\\Delta \\in \\mathscr\{D\}_\{\\ell+1\}$. Then $\\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\} \\in \\mathscr\{D\}_\\ell$.\
-\\end\{lemma\}\
-\
-We must show that $\\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\}$ is a $\\Gamma$-subsemimodule and that its complement in $\\Gamma$ has cardinality $\\ell$.\
-\
-\
-First, we verify that $\\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\}$ is closed under addition by $\\Gamma$. Let $x \\in \\Gamma$ and $y \\in \\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\}$. We consider two cases:\
-\
-\
-\\begin\{enumerate\}\
-    \\item \\textbf\{Case $y \\in \\Delta$:\}  \
-    Since $\\Delta$ is a $\\Gamma$-subsemimodule, $x + y \\in \\Delta \\subseteq \\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\}$.\
-\
-\
-    \\item \\textbf\{Case $y = \\gamma_\{\\Delta\}$:\}  \
-    If $x = 0$, then $x + y = \\gamma_\{\\Delta\} \\in \\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\}$.  \
-    If $x > 0$, then $x + \\gamma_\{\\Delta\} > \\gamma_\{\\Delta\} = \\max(\\Gamma \\setminus \\Delta)$. Since $x + \\gamma_\{\\Delta\} \\in \\Gamma$, it cannot lie in $\\Gamma \\setminus \\Delta$, so $x + \\gamma_\{\\Delta\} \\in \\Delta \\subset \\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\}$.\
-\\end\{enumerate\}\
-\
-\
-Thus, $\\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\}$ is a $\\Gamma$-subsemimodule. Moreover, since $\\gamma_\{\\Delta\} \\notin \\Delta$, we have\
-\\[\
-\\#(\\Gamma \\setminus (\\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\})) = \\#(\\Gamma \\setminus \\Delta) - 1 = (\\ell + 1) - 1 = \\ell.\
-\\]\
-Therefore, $\\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\} \\in \\mathscr\{D\}_\\ell$.\
-\\end\{proof\}\
-
-\
-\\begin\{lemma\}\\label\{lem:gamma_generator\}\
-Let $\\Delta \\in \\mathscr\{D\}_\{\\ell+1\}$. Then the Frobenius element $\\gamma_\\Delta = \\max(\\Gamma \\setminus \\Delta)$ is part of every minimal generating set of the $\\Gamma$-subsemimodule $\\Delta \\cup \\\{\\gamma_\\Delta\\\}$.\
-\\end\{lemma\}\
-\
-\
-\\begin\{proof\}\
-Suppose, for contradiction, that $\\gamma_\\Delta$ is not a minimal generator of $\\Delta \\cup \\\{\\gamma_\\Delta\\\}$. Then it can be written as\
-\\[\
-\\gamma_\\Delta = x + y\
-\\]\
-for some $x \\in \\Delta$ and $y \\in \\Gamma \\setminus \\\{0\\\}$. Since $y > 0$, we have $x < \\gamma_\\Delta$. But $x \\in \\Delta$, so $x \\in \\Gamma$, and thus $\\gamma_\\Delta = x + y \\in \\Gamma$. Moreover, since $\\Delta$ is a $\\Gamma$-subsemimodule and $x \\in \\Delta$, $y \\in \\Gamma$, we have $\\gamma_\\Delta = x + y \\in \\Delta$. This contradicts the fact that $\\gamma_\\Delta \\notin \\Delta$.\
-\
-\
-Therefore, $\\gamma_\\Delta$ cannot be expressed as a sum of an element in $\\Delta$ and a nonzero element of $\\Gamma$, so it must belong to every minimal generating set of $\\Delta \\cup \\\{\\gamma_\\Delta\\\}$.\
-\\end\{proof\}\
-\
-\
-\
-\
-\
-\\begin\{proposition\}\\label\{prop:surjective\}\
-The deletion maps cover all of $\\mathscr\{D\}_\{\\ell+1\}$, i.e.,\
-\\[\
-\\mathscr\{D\}_\{\\ell+1\} = \\bigcup_\{n \\geq 1\} \\bigcup_\{i=1\}^n d_\{\\ell,i\}(\\mathscr\{D\}_\{\\ell,n\}).\
-\\]\
-In other words, every element of $\\mathscr\{D\}_\{\\ell+1\}$ arises as $\\Delta' \\setminus \\\{\\gamma_i\\\}$ for some $\\Delta' \\in \\mathscr\{D\}_\\ell$ and some minimal generator $\\gamma_i$ of $\\Delta'$.\
-\\end\{proposition\}\
-\
-\
-\\begin\{proof\}\
-Let $\\Delta \\in \\mathscr\{D\}_\{\\ell+1\}$. By Lemma~\\ref\{lem:delta_union\}, the set $\\Delta \\cup \\\{\\gamma_\\Delta\\\}$ belongs to $\\mathscr\{D\}_\\ell$. By Lemma~\\ref\{lem:gamma_generator\}, $\\gamma_\\Delta$ is a minimal generator of $\\Delta \\cup \\\{\\gamma_\\Delta\\\}$.\
-\
-\
-Let $\\\{\\gamma_1, \\dots, \\gamma_n\\\}$ be a minimal generating set of $\\Delta \\cup \\\{\\gamma_\\Delta\\\}$, with $\\gamma_i = \\gamma_\\Delta$ for some $i$. Then, by definition of the deletion map $d_\{\\ell,i\}$, we have\
-\\[\
-d_\{\\ell,i\}(\\Delta \\cup \\\{\\gamma_\\Delta\\\}) = (\\Delta \\cup \\\{\\gamma_\\Delta\\\}) \\setminus \\\{\\gamma_i\\\} = (\\Delta \\cup \\\{\\gamma_\\Delta\\\}) \\setminus \\\{\\gamma_\\Delta\\\} = \\Delta.\
-\\]\
-Hence, $\\Delta$ lies in the image of $d_\{\\ell,i\}$, and the union of the deletion maps is surjective.\
-\\end\{proof\}\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-It follows from Lemma~\\ref\{lem:delta_union\} that we can define a key map for the sequel: for $\\ell \\in \\mathbb\{N\}$ with $1 \\leq \\ell < c$, set\
-\\[\
-m_\{\\ell+1\} \\colon \\mathscr\{D\}_\{\\ell+1\} \\to \\mathscr\{D\}_\{\\ell\}, \\quad \\Delta \\mapsto \\Delta \\cup \\\{\\gamma_\{\\Delta\}\\\},\
-\\]\
-where $\\gamma_\{\\Delta\} = \\max(\\Gamma \\setminus \\Delta)$ is the Frobenius element of $\\Delta$. This map, which "adds back" the largest gap in $\\Gamma \\setminus \\Delta$, will play a central role in the recursive study of strata in the punctual Hilbert schemes.\
-\
-\
-The following definition introduces one of the main objects of this article. Recall that $c$ denotes the conductor of the curve singularity $(C,O)$.\
-\\begin\{definition\}\\label\{def:G_Gamma\}\
-The \\emph\{$\\Gamma$-subsemimodule graph\}, denoted $G_\\Gamma = (V, E)$, is the directed, levelled graph defined as follows:\
-\\begin\{itemize\}\
-    \\item \\textbf\{Vertices:\} For each $\\ell$ with $1 \\leq \\ell \\leq c$, we denote the set of the vertices at level  $V_\\ell:=\\mathscr\{D\}_\\ell$, so that\
-    \\[\
-    V = \\bigsqcup_\{\\ell=1\}^\{c\} V_\\ell.\
-    \\]\
-\
-\
-    \\item \\textbf\{Edges:\} For $2 \\leq \\ell \\leq c$, there is a directed edge from a vertex corresponding to $\\Delta \\in \\mathscr\{D\}_\\ell$ to a vertex corresponding to $\\Delta' \\in \\mathscr\{D\}_\{\\ell-1\}$ if and only if\
-    \\[\
-    m_\\ell(\\Delta) = \\Delta'.\
-    \\]\
-    We denote by $E_\\ell$ the set of such edges from level $\\ell$ to level $\\ell-1$, so that\
-    \\[\
-    E = \\bigsqcup_\{\\ell=2\}^\{c\} E_\\ell.\
-    \\]\
-\\end\{itemize\}\
-We refer to $G_\\Gamma$ as the \\emph\{value tree\} or \\emph\{semimodule tree\} associated with the singularity $(C,O)$.\
-\\end\{definition\}\
-\
-\
-\
-
-\
-\
-\
-\
-\
-\\begin\{theorem\}\\label\{Tree\}\
-The $\\Gamma$-subsemimodule graph $G_\{\\Gamma\}$ admits a canonical tree structure. The set $\\mathscr\{D\}_1$ consists of a single element, $\\Gamma \\setminus \\\{0\\\}$, which we designate as the root of the graph $G_\{\\Gamma\}$.\
-\\end\{theorem\}\
-\
-\
-\\begin\{proof\}\
-We establish that $G_\{\\Gamma\}$ is a tree by verifying the two defining properties of a tree in graph theory:\
-\
-\
-\\begin\{enumerate\}\
-    \\item \\textbf\{Connectedness:\} Let $\\Delta_1 \\in \\mathscr\{D\}_\{\\ell_1\}$ and $\\Delta_2 \\in \\mathscr\{D\}_\{\\ell_2\}$ be arbitrary vertices in $G_\{\\Gamma\}$. Then there exists a finite sequence of maps\
-    \\[\
-    \\Delta_1 \\to m_\{\\ell_1\}(\\Delta_1) \\to \\cdots \\to \\Gamma \\setminus \\\{0\\\} \\leftarrow \\cdots \\leftarrow m_\{\\ell_2\}(\\Delta_2) \\leftarrow \\Delta_2,\
-    \\]\
-    where each arrow corresponds to an edge in $G_\{\\Gamma\}$, and $\\Gamma \\setminus \\\{0\\\} \\in \\mathscr\{D\}_1$ is the root. This shows that any two vertices are connected by a path, so $G_\{\\Gamma\}$ is connected.\
-\
-\
-    \\item \\textbf\{Acyclicity:\} t follows from the uniqueness of Frobenius element of a $\\Gamma$-subsemimodule.\
-\
-\
-\\end\{enumerate\}\
-\
-\
-Thus, $G_\{\\Gamma\}$ is connected and acyclic, and hence has the structure of a tree, with root $\\Gamma \\setminus \\\{0\\\}$.\
-\\end\{proof\}\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-We can
-identify the edges $E_\\ell = \\\{m_\{\\ell|_\{\\Delta\}\} : \\Delta \\to m_\\ell(\\Delta) \\mid \\Delta \\in \\mathscr\{D\}_\\ell\\\}_\{2\\leq \\ell \\leq c\}$ to $\\\{d_\{\\ell-1,i \\mid m_\\ell(\\Delta)\}:    m_\\ell(\\Delta) \\rightarrow \\Delta \\mid \\Delta \\in \\mathscr\{D\}_\\ell\\\}_\{2\\leq \\ell \\leq c\}$ or to $\\\{d_\{\\ell,i\\mid \\Delta\}:\\Delta\\rightarrow d_\{\\ell,i\}(\\Delta)\\mid m_\{\\ell+1\}d_\{\\ell,i\}(\\Delta)=\\Delta\\\}_\{1\\leq \\ell< c\}$. \\\\\
-\
-\
-\
-\
-\
-In the sequel, for a fixed parameter $\\ell$, we adopt the following simplified notations when there is no ambiguity: set $d_i := d_\{\\ell,i\}$ and $m := m_\\ell$. \
-\
-\
-For a $\\Gamma$-subsemimodule $\\Delta$, we define its \\emph\{conductor\} as\
-\\[\
-c(\\Delta) := \\min\\left\\\{ i \\in \\Delta \\mid i + \\mathbb\{N\} \\subseteq  \\Delta \\right\\\}.\
-\\]\
-\
-\
-The tree $G_\\Gamma$ has the following properties:\
-\
-\
-\\begin\{proposition\}\\label\{property_of_tree\}\
-Let $\\Gamma$ be a numerical semigroup. We consider the following construction:\
-\
-\
-\\begin\{enumerate\}\
-    \\item[(i)] Define a sequence of $\\Gamma$-subsemimodules $\\\{\\Delta^\{(\\ell)\}\\\}_\{1 \\leq \\ell \\leq c\}$ recursively by:\
-    \\begin\{itemize\}\
-        \\item $\\Delta^\{(1)\} \\coloneqq \\Gamma \\setminus \\\{0\\\}$,\
-        \\item $\\Delta^\{(\\ell)\} \\coloneqq d_1(\\Delta^\{(\\ell-1)\}) \\in \\mathscr\{D\}_\\ell$ for $1 < \\ell \\leq c$.\
-    \\end\{itemize\}\
-    For each $1 < \\ell \\leq c$, we have $m \\circ d_1(\\Delta^\{(\\ell-1)\}) = \\Delta^\{(\\ell-1)\}$, so the map \
-     $d_1$  induces an edge \
-    \\[\
-    \\Delta^\{(\\ell-1)\} \\to \\Delta^\{(\\ell)\}\
-    \\]\
-    in the tree $G_\\Gamma$. We refer to $\\Delta^\{(\\ell)\}$ as the \\emph\{level-$\\ell$ root vertex\} of $G_\\Gamma$.\
-\
-\
-    \\item[(ii)] For any $\\Gamma$-subsemimodule $\\Delta \\in \\mathscr\{D\}_\\ell$, the following dichotomy holds:\
-    \\begin\{itemize\}\
-        \\item If $\\gamma_\\Delta < \\min(\\Delta)$, then $\\Delta = \\Delta^\{(\\ell)\}$ for some $\\ell \\geq 1$. In this case, $\\Delta$ lies on the root path of the tree.\
-        \\item If $\\gamma_\\Delta > \\min(\\Delta)$, then $m \\circ d_1(\\Delta) \\neq \\Delta$, and hence the deletion $d_1(\\Delta)$ does not correspond to an edge pointing back to $\\Delta$ in $G_\\Gamma$. Such $\\Delta$ corresponds to a non-root vertex off the main branch.\
-    \\end\{itemize\}\
-\\end\{enumerate\}\
-\\end\{proposition\}\
-\
-\
-\
-\\begin\{proof\}\
-We prove each part in turn.\
-\
-\
-\\medskip\
-\
-\
-\{(i)\} We proceed by induction to show that $ m_\\ell(\\Delta^\{(\\ell)\}) = \\Delta^\{(\\ell-1)\} $ for all $ 2 \\leq \\ell \\leq c $. \
-\
-\
-For the base case $ \\ell = 2 $, recall that $ \\Delta^\{(1)\} = \\Gamma \\setminus \\\{0\\\} $, so $ \\min(\\Delta^\{(1)\}) $ is the smallest positive element of $ \\Gamma $. By construction, $ \\Delta^\{(2)\} = d_1(\\Delta^\{(1)\}) = \\Delta^\{(1)\} \\setminus \\\{\\min(\\Delta^\{(1)\})\\\} $. Thus,\
-\\[\
-\\Gamma \\setminus \\Delta^\{(2)\} = \\\{0\\\} \\cup (\\Gamma \\setminus \\Delta^\{(1)\}) = \\\{0, \\min(\\Delta^\{(1)\})\\\},\
-\\]\
-and since $ \\min(\\Delta^\{(1)\}) > 0 $, we have\
-\\[\
-\\gamma_\{\\Delta^\{(2)\}\} = \\max(\\Gamma \\setminus \\Delta^\{(2)\}) = \\min(\\Delta^\{(1)\}).\
-\\]\
-Therefore,\
-\\[\
-m_2(\\Delta^\{(2)\}) = \\Delta^\{(2)\} \\cup \\\{\\gamma_\{\\Delta^\{(2)\}\}\\\} = \\Delta^\{(2)\} \\cup \\\{\\min(\\Delta^\{(1)\})\\\} = \\Delta^\{(1)\},\
-\\]\
-which establishes the base case.\
-\
-\
-Now suppose the claim holds for some $ \\ell - 1 $, i.e., $ m_\{\\ell-1\}(\\Delta^\{(\\ell-1)\}) = \\Delta^\{(\\ell-2)\} $. By definition, $ \\Delta^\{(\\ell)\} = d_1(\\Delta^\{(\\ell-1)\}) = \\Delta^\{(\\ell-1)\} \\setminus \\\{\\min(\\Delta^\{(\\ell-1)\})\\\} $. Then\
-\\[\
-\\Gamma \\setminus \\Delta^\{(\\ell)\} = (\\Gamma \\setminus \\Delta^\{(\\ell-1)\}) \\cup \\\{\\min(\\Delta^\{(\\ell-1)\})\\\},\
-\\]\
-and since $ \\min(\\Delta^\{(\\ell-1)\}) > \\max(\\Gamma \\setminus \\Delta^\{(\\ell-1)\}) $ (by the inductive structure), we have\
-\\[\
-\\gamma_\{\\Delta^\{(\\ell)\}\} = \\max(\\Gamma \\setminus \\Delta^\{(\\ell)\}) = \\min(\\Delta^\{(\\ell-1)\}).\
-\\]\
-Thus,\
-\\[\
-m_\\ell(\\Delta^\{(\\ell)\}) = \\Delta^\{(\\ell)\} \\cup \\\{\\gamma_\{\\Delta^\{(\\ell)\}\}\\\} = \\Delta^\{(\\ell)\} \\cup \\\{\\min(\\Delta^\{(\\ell-1)\})\\\} = \\Delta^\{(\\ell-1)\},\
-\\]\
-completing the induction.\
-\
-\
-\\medskip\
-\
-\
-\{(ii)\} Suppose $ \\gamma_\\Delta < \\min(\\Delta) $. Then $ \\min(m(\\Delta)) = \\min(\\Delta \\cup \\\{\\gamma_\\Delta\\\}) = \\gamma_\\Delta $, since $ \\gamma_\\Delta \\notin \\Delta $ and $ \\gamma_\\Delta < \\min(\\Delta) $. In particular, $ \\gamma_\\Delta $ is strictly smaller than all elements of $ \\Delta $, so it becomes the minimal element of $ m(\\Delta) $. Therefore,\
-\\[\
-d_1(m(\\Delta)) = m(\\Delta) \\setminus \\\{\\min(m(\\Delta))\\\} = (\\Delta \\cup \\\{\\gamma_\\Delta\\\}) \\setminus \\\{\\gamma_\\Delta\\\} = \\Delta,\
-\\]\
-which shows that $ \\Delta $ lies on the image of the $ d_1 $-path starting from $ \\Delta^\{(1)\} $.\
-\
-\
-Moreover, since $ c(m(\\Delta)) \\leq \\gamma_\\Delta < c(\\Delta) $, the conductor strictly decreases along this process. Hence, repeated application of $ m $ eventually yields a subsemimodule $ m^k(\\Delta) $ such that $ \\gamma_\{m^k(\\Delta)\} < \\min(m^k(\\Delta)) $ and $ c(m^k(\\Delta)) $ is minimal. This process terminates at $ \\Delta^\{(1)\} = \\Gamma \\setminus \\\{0\\\} $, so $ \\Delta = \\Delta^\{(\\ell)\} $ for some $ \\ell $.\
-\
-\
-Conversely, if $ \\gamma_\\Delta > \\min(\\Delta) $, then $ \\min(m(\\Delta)) = \\min(\\Delta) $, and $ \\gamma_\\Delta $ is not the smallest element of $ m(\\Delta) $. Therefore, $ d_1(m(\\Delta)) $ removes $ \\min(\\Delta) $, not $ \\gamma_\\Delta $, so\
-\\[\
-d_1(m(\\Delta)) \\neq \\Delta,\
-\\]\
-and thus the edge $ \\Delta \\to m(\\Delta) $ is not reversible via $ d_1 $. This means $ \\Delta $ does not lie on the main $ d_1 $-branch of the tree.\
-\\end\{proof\}\
-\
-\
-\\begin\{example\}\\label\{ex:34\}\
-Let $A = k[[t^3, t^4]]$, the local ring of the plane curve singularity defined by $y^3 - x^4 = 0$. The associated value semigroup is\
-\\[\
-\\Gamma = \\langle 3,4 \\rangle = \\\{0, 3, 4, 6, 7, 8, 9, \\dots\\\},\
-\\]\
-which contains all integers $n \\geq 6$ except 5. 
-\
-\
-\
-\
-Consider the subsemimodule $\\Delta = (3,4) = \\Gamma \\setminus \\\{0\\\} \\in \\mathscr\{D\}_1$, which is the root of the tree $G_\\Gamma$. Applying the deletion maps $d_\{1,i\}$ corresponding to each minimal generator, we obtain:\
-\\begin\{itemize\}\
-    \\item $d_\{1,1\}((3,4)_\{\\Gamma\} ) = (3,4)_\{\\Gamma\}  \\setminus \\\{3\\\} = \\\{4,6,7,8,9,\\dots\\\} = (4,6)_\{\\Gamma\}  \\in \\mathscr\{D\}_2$,\
-    \\item $d_\{1,2\}((3,4)_\{\\Gamma\} ) = (3,4)_\{\\Gamma\}  \\setminus \\\{4\\\} = \\\{3,6,7,8,9,\\dots\\\} = (3,8)_\{\\Gamma\}  \\in \\mathscr\{D\}_2$.\
-    \\item $d_\{2,1\}((4,6)_\{\\Gamma\} ) = (4,6)_\{\\Gamma\}  \\setminus \\\{4\\\} = \\\{6,7,8,9,\\dots\\\} = (6,7,8)_\{\\Gamma\}  \\in \\mathscr\{D\}_3. $\
-\\end\{itemize\}\
-Note that both $(4,6)$ and $(3,8)$ are distinct elements in $\\mathscr\{D\}_2$, corresponding to two different branches from the root.\
-\\begin\{figure\}[h]\
-\\centering\
-\\begin\{tikzpicture\}[level distance=0.1cm,\
-   level 1/.style=\{sibling distance=5cm, level distance=1.5cm\},\
-   level 2/.style=\{sibling distance=6cm, level distance=2cm\},\
-    level 3/.style=\{sibling distance=3cm, level distance=2cm\},\
-    level 4/.style=\{sibling distance=2.3cm, level distance=2cm\},\
-    level 5/.style=\{sibling distance=2cm, level distance=2cm\},\
-   grow'=up]\
- \
-\\node \{$(3,4)_\{\\Gamma\} $\} \
-   child \{node \{$(4,6)_\{\\Gamma\} $\} \
-    child \{node \{$(6,7,8)_\{\\Gamma\} $\}  \
-        child \{node \{$(7,8,9)_\{\\Gamma\} $\}\
-            child \{node \{$(8,9,10)_\{\\Gamma\} $\}\
-                child\{node \{$(9,10,11)_\{\\Gamma\} $\}edge from parent node[left]\{$d_\{1\}$\}\}\
-                    child \{node \{$(8,10)_\{\\Gamma\} $\}edge from parent node[right]\{$d_\{2\}$\}\}\
-                        child \{node \{$(8,9)_\{\\Gamma\} $\}edge from parent node[right]\{$d_\{3\}$\}\}\
-                        edge from parent node[left]\{$d_\{1\}$\}\}\
-                            child \{node \{$(7,9)_\{\\Gamma\} $\}\
-                            child [missing]\{\}\
-                            child [missing]\{\}\
-                                child \{node \{$(7,12)_\{\\Gamma\} $\}edge from parent node[right]\{$d_\{2\}$\}\}\
-                                edge from parent node[right]\{$d_\{2\}$\}\}\
-                                    child \{node \{$(7,8)_\{\\Gamma\} $\}edge from parent node[right]\{$d_\{3\}$\}\}\
-                                    edge from parent node[left]\{$d_\{1\}$\}\}  \
-                                        child \{node \{$(6,8)_\{\\Gamma\} $\}\
-                                            child[missing]\{\}\
-                                                child[missing]\{\}\
-                                                    child \{node \{$(6,11)_\{\\Gamma\} $\}\
-                                                    child \{node \{$(6)_\{\\Gamma\} $\}edge from parent node[right]\{$d_\{2\}$\}\}edge from parent node[right]\{$d_\{2\}$\}\}\
-                                                    edge from parent node[right]\{$d_\{2\}$\}\}   \
-                                                        child \{node \{$(6,7)_\{\\Gamma\} $\}edge from parent node[right]\{$d_\{3\}$\}\}edge from parent node[left]\{$d_\{1\}$\}\}\
-                                                            child \{node \{$(4,9)_\{\\Gamma\} $ \}\
-                                                                child \{node \{$(4)_\{\\Gamma\} $\}edge from parent node[right]\{$d_\{2\}$\}\}edge from parent node[right]\{$d_\{2\}$\}\}\
-                                                                    edge from parent node[left]\{$d_\{1\}$\}\}\
-                                                                        child \{node \{$(3,8)_\{\\Gamma\} $\} \
-                                                                            child \{node \{$(3)_\{\\Gamma\} $\}\
-                                                                            edge from parent node[right]\{$d_\{2\}$\}\}edge from parent node[right]\{$d_\{2\}$\}\
-\};\
-\
-\\end\{tikzpicture\}\
-   Tree for the case of  $E_\{6\}$ type singularity\
-    \\label\{fig:enter-label\}\
-\\end\{figure\}\\\\\
-\\end\{example\}\
-\
-}
